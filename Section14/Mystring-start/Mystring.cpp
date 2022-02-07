@@ -35,7 +35,8 @@ Mystring::Mystring(const Mystring &source)
 }
 
 // Destructor
-Mystring::~Mystring() {
+Mystring::~Mystring() 
+{
   delete [] str;
 }
 
