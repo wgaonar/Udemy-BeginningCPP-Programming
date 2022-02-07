@@ -1,5 +1,5 @@
 /******************************************************************
- * Section 13 Challenge
+ * Section 13 Challenge with Raw Pointer
  * Movie.cpp
  * 
  * Models a Movie with the following atttributes
@@ -20,7 +20,8 @@ Movie::Movie(std::string name, std::string rating, int watched) :
 {}
 
 //Implemention of the copy constructor
-Movie::Movie(const Movie &source) : 
+Movie::Movie(const Movie &source) :
+  // Using delegate constructor
   Movie {source.name, source.rating, source.watched} 
 {}
 

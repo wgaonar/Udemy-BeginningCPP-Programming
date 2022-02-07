@@ -1,5 +1,5 @@
 /******************************************************************
- * Section 13 Challenge
+ * Section 13 Challenge with Raw Pointer
  * Movie.h
  * 
  * Models a Movie with the following atttributes

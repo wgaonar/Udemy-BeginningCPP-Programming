@@ -43,7 +43,7 @@ Move::Move(const Move &source):
 
 //Move constructor
 Move::Move(Move &&source) noexcept : 
-data {source.data} 
+  data {source.data} 
 {
   source.data = nullptr;
   cout << "Move constructor - moving resource: " << *data << endl;

@@ -28,7 +28,7 @@ Player::Player() :
 
 Player::Player(std::string name_val) : 
   name {name_val}, 
-  health{ 0}, 
+  health {0}, 
   xp {0} 
 {}
   

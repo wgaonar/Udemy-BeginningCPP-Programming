@@ -28,10 +28,17 @@ Deep::Deep(int d)
 }
 
 // Copy constructor
-Deep::Deep(const Deep &source) : 
-  // Using a delegate constructor to create a new pointer
-  Deep {*source.data} 
-{ cout << "Copy constructor  - deep copy" << endl; }
+Deep::Deep(const Deep &source) 
+  // Option 1: Using a delegate constructor to create a new pointer
+  : Deep {*source.data}
+  { cout << "Copy constructor  - deep copy using delegate constructor" << endl; }
+  
+  // Option 2: Using an explicit member initialization
+ /*  {
+    data = new int;
+    *data = *source.data;
+    cout << "Copy constructor  - deep copy using explicit member initialization" << endl; 
+  } */
 
 // Destructor
 Deep::~Deep() 

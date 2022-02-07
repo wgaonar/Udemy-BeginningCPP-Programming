@@ -14,8 +14,10 @@ public:
   int get_data_value() { return *data; }
   // Constructor
   Shallow(int d);
+
   // Copy Constructor
   Shallow(const Shallow &source);
+
   // Destructor
   ~Shallow();
 };
@@ -33,12 +35,14 @@ Shallow::Shallow(const Shallow &source) :
   data {source.data} 
 { cout << "Copy constructor  - shallow copy" << endl; }
 
+// Destructor
 Shallow::~Shallow() 
 {
   delete data;
   cout << "Destructor freeing data" << endl;
 }
 
+// Outside class function
 void display_shallow(Shallow s) 
 { cout << s.get_data_value() << endl; }
 

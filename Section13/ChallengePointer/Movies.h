@@ -1,5 +1,5 @@
 /******************************************************************
-  * Section 13 Challenge
+  * Section 13 Challenge with Raw Pointer
   * Movies.h
   * 
   * Models a collection of Movie as a std::vector
@@ -21,8 +21,11 @@ public:
   // No-args constructor
   Movies();
 
-  // Constructor
-  Movies(Movie newMovie);
+  // Deep Copy Constructor
+  Movies (const Movies &source);
+
+  // Move Constructor
+  Movies (Movies &&source);
 
   // Destructor
   ~Movies();          
@@ -51,7 +54,18 @@ public:
   provided exists to increment
   *********************************************************************/
   bool increment_watched(std::string name);
-    
+
+  /*************************************************************************
+  remove_movie expects the name of the move
+  
+  It will search the movies vector to see if a movie object already exists
+  with the same name. 
+  
+  If it does then return false since the movie no exists
+  Otherwise, remove a movie object movie object to the movies vector and return true
+  *********************************************************************/
+  bool remove_movie(std::string name);
+
   /*************************************************************************
   display
   

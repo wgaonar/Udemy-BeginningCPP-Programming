@@ -14,7 +14,7 @@ private:
 
 public:
   Player(std::string name_val ="None", int health_val = 0, int xp_val = 0);
-  //  Player() {}    // Will cause a compiler error
+  //  Player() {}    // Will cause a compiler error because an ambiguity situation with the default constructor parameters.
 };
 
   
@@ -22,7 +22,7 @@ Player::Player(std::string name_val, int health_val, int xp_val) :
   name{name_val}, 
   health{health_val}, 
   xp{xp_val} 
-{cout << "Three-args constructor" << endl;}
+{cout << "Default constructor parameters with three-args" << endl;}
 
 
 int main() {

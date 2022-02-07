@@ -20,18 +20,18 @@ public:
 };
 
 Player::Player() : 
-  Player {"None",0,0} 
+  Player {"None",0,0} //Use the delegate constructor
 {cout << "No-args constructor" << endl;}
 
 Player::Player(std::string name_val) : 
-  Player {name_val,0, 0}  
+  Player {name_val,0, 0}  // Use the delegate constructor
 {cout << "One-arg constructor" << endl;}
   
 Player::Player(std::string name_val, int health_val, int xp_val) : 
   name {name_val}, 
   health {health_val}, 
   xp {xp_val} 
-{cout << "Three-args constructor" << endl;}
+{cout << "The delegate constructor with three-args constructor" << endl;}
 
 int main() {
     

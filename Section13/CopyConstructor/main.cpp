@@ -28,7 +28,7 @@ public:
   int get_xp() const {return xp; } 
 };
 
-// Overload constructor
+// Default parameters constructor
 Player::Player(std::string name_val, int health_val, int xp_val) : 
   name{name_val},
   health{health_val}, 
@@ -53,7 +53,8 @@ void display_player(Player p)
 }
 
 int main() 
-{    
+{ 
+  Player nothing;   
   Player empty {"XXXXXX", 100, 50};
   
   Player my_new_object {empty};
