@@ -4,19 +4,29 @@
 class Mystring
 {
 private:
-    char *str;      // pointer to a char[] that holds a C-style string
+  char *str;      // pointer to a char[] that holds a C-style string
 public:
-    Mystring();                                                         // No-args constructor
-    Mystring(const char *s);                                     // Overloaded constructor
-    Mystring(const Mystring &source);                    // Copy constructor
-    ~Mystring();                                                      // Destructor
-    
-    Mystring &operator=(const Mystring &rhs);       // Copy assignment
-    
-    void display() const;
+  // No-args constructor
+  Mystring(); // No-args constructor
+  
+  // Overloaded constructor
+  Mystring(const char *s);
 
-    int get_length() const;                                       // getters
-    const char *get_str() const;
+  // Deep copy constructor
+  Mystring(const Mystring &source);
+
+  // Destructor
+  ~Mystring();                                                      
+  
+  // Copy assignment overload operator =
+  Mystring &operator=(const Mystring &rhs);
+
+   // Getters
+  int get_length() const;                                      
+  const char *get_str() const;
+
+  // Accessory functions
+  void display() const;
 };
 
 #endif // _MYSTRING_H_

@@ -21,6 +21,8 @@ public:
   // Getters                                         
   void display() const;
   int get_length() const;
+
+  // Accessory functions
   const char *get_str() const;
   
 };
