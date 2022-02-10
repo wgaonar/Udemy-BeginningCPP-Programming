@@ -41,7 +41,7 @@ Mystring::~Mystring()
 }
 
 // Copy assignment overload operator =
-Mystring &Mystring::operator=(const Mystring &rhs) 
+Mystring &Mystring::operator= (const Mystring &rhs) 
 {
   std::cout << "Copy assignment" << std::endl;
   // Check if the rhs object is the same than this object
