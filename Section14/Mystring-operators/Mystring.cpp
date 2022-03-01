@@ -5,41 +5,49 @@
 
 // No-args constructor
 Mystring::Mystring() 
-    : str{nullptr} {
-    str = new char[1];
-    *str = '\0';
+  : str{nullptr} 
+{
+  str = new char[1];
+  *str = '\0';
 }
 
 // Overloaded constructor
 Mystring::Mystring(const char *s) 
-    : str {nullptr} {
-        if (s==nullptr) {
-            str = new char[1];
-            *str = '\0';
-        } else {
-            str = new char[std::strlen(s)+1];
-            std::strcpy(str, s);
-        }
+  : str {nullptr} 
+{
+  if (s==nullptr) 
+  {
+    str = new char[1];
+    *str = '\0';
+  } 
+  else 
+  {
+    str = new char[std::strlen(s)+1];
+    std::strcpy(str, s);
+  }
 }
 
-// Copy constructor
+// Deep copy constructor
 Mystring::Mystring(const Mystring &source) 
-    : str{nullptr} {
-        str = new char[std::strlen(source.str)+ 1];
-        std::strcpy(str, source.str);
-        std::cout << "Copy constructor used" << std::endl;
+  : str{nullptr} 
+{
+  str = new char[std::strlen(source.str) + 1];
+  std::strcpy(str, source.str);
+  std::cout << "Deep copy constructor used" << std::endl;
 }
 
 // Move constructor
 Mystring::Mystring( Mystring &&source) 
-    :str(source.str) {
-        source.str = nullptr;
-        std::cout << "Move constructor used" << std::endl;
+  :str {source.str} 
+{
+  source.str = nullptr;
+  std::cout << "Move constructor used" << std::endl;
 }
 
 // Destructor
-Mystring::~Mystring() {
-    delete [] str;
+Mystring::~Mystring() 
+{
+  delete [] str;
 }
 
 // Copy assignment operator
