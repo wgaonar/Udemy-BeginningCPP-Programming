@@ -30,6 +30,7 @@ Mystring::Mystring(const char *s)
 Mystring::Mystring(const Mystring &source) 
   : str{nullptr} 
 {
+  std::cout << "Deep copy constructor used" << std::endl;
   str = new char[std::strlen(source.str) + 1];
   std::strcpy(str, source.str);
 }
@@ -44,6 +45,7 @@ Mystring::~Mystring()
 Mystring &Mystring::operator= (const Mystring &rhs) 
 {
   std::cout << "Copy assignment" << std::endl;
+
   // Check if the rhs object is the same than this object
   if (this == &rhs)
     return *this;

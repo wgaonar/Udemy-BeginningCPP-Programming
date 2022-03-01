@@ -24,7 +24,7 @@ int main()
   Mystring empty;
 
   // overloaded constructor                      
-  Mystring larry("Larry");
+  Mystring larry {"Larry"};
 
   // Deep copy constructor             
   Mystring stooge {larry};
