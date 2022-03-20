@@ -2,25 +2,38 @@
 #define _MYSTRING_H_
 
 class Mystring {
-    friend bool operator==(const Mystring &lhs, const Mystring &rhs);
-    friend Mystring operator-(const Mystring &obj);
-    friend Mystring operator+(const Mystring &lhs, const Mystring &rhs);
+  friend bool operator==(const Mystring &lhs, const Mystring &rhs);
+  friend Mystring operator-(const Mystring &obj);
+  friend Mystring operator+(const Mystring &lhs, const Mystring &rhs);
 private:
-    char *str;      // pointer to a char[] that hold a C-style string
+  char *str;      // pointer to a char[] that hold a C-style string
 public:
-    Mystring();
-    Mystring(const char *s);
-    Mystring(const Mystring &source);
-    Mystring( Mystring &&source);
-    ~Mystring();
-    
-    Mystring &operator=(const Mystring &rhs);
-    Mystring &operator=(Mystring &&rhs);
-   
-    void display() const;
+  // No-args constructor
+  Mystring();
 
-    int get_length() const;
-    const char *get_str() const;
+  // Overload constructor
+  Mystring(const char *s);
+
+  // Copy constructor
+  Mystring(const Mystring &source);
+
+  // Move constructor
+  Mystring( Mystring &&source);
+
+  // Destructor
+  ~Mystring();
+  
+  // Copy assignment overload operator =
+  Mystring &operator=(const Mystring &rhs);
+
+  // Move assignment overload operator =
+  Mystring &operator=(Mystring &&rhs);
+  
+  // Getters
+  int get_length() const;
+  const char *get_str() const;
+  
+  // Accessory functions
+  void display() const;
 };
-
 #endif // _MYSTRING_H_

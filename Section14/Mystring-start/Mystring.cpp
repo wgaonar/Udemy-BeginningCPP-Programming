@@ -11,8 +11,8 @@ Mystring::Mystring()
 }
 
 // Overloaded constructor
-Mystring::Mystring(const char *s) 
-: str {nullptr} 
+Mystring::Mystring(const char *s) : 
+str {nullptr} 
 {
   if (s==nullptr) 
   {
@@ -27,8 +27,8 @@ Mystring::Mystring(const char *s)
 }
 
 // Deep copy constructor
-Mystring::Mystring(const Mystring &source) 
-: str{nullptr} 
+Mystring::Mystring(const Mystring &source) : 
+str{nullptr} 
 {
   str = new char[std::strlen(source.str) + 1];
   std::strcpy(str, source.str);
