@@ -33,7 +33,7 @@ Here is a list of some of the operators that you can overload for this class:
             s1 = "abc";
             s1 *= 4;        s1 = s1 will result in "abcabcabcabc"
       
-If you wish to overlod the ++ and -- operators remember that they have pre and post versions.
+If you wish to overload the ++ and -- operators remember that they have pre and post versions.
 
 The semantics should be as follows (this shows the member method version):
 

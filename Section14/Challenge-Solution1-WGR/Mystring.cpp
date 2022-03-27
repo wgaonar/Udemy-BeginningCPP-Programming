@@ -31,8 +31,7 @@ Mystring::Mystring(const Mystring &source)
 {
   str = new char[strlen(source.str)+ 1];
   strcpy(str, source.str);
-  std::cout << "Copy constructor used" << std::endl;
-
+  // std::cout << "Copy constructor used" << std::endl;
 }
 
 // Move constructor
@@ -139,29 +138,28 @@ Mystring Mystring::operator+(const Mystring &rhs) const
 // Addition assignment - overload binary operator +=
 Mystring &Mystring::operator+=(const Mystring &rhs)
 {
-  std::strcat(str, rhs.str);
-  // *this = *this + rhs;
-
+  *this = *this + rhs;
+  // std::strcat(str, rhs.str);
   return *this;
 }
 
 // Repeat - overload binary operator *
 Mystring Mystring::operator*(const int n) const
 {
-  char *buff = new char[std::strlen(str) * n  + 1];
-  for (size_t i = 0; i < n; i++)
-    std::strcat(buff, str);
-
-  /*
   Mystring temp;
   for (size_t i = 0; i < n; i++)
     temp = temp + *this;
   return temp;
-  */
+  
+  /*
+  char *buff = new char[std::strlen(str) * n  + 1];
+  for (size_t i = 0; i < n; i++)
+    std::strcat(buff, str);
 
   Mystring temp {buff};
   delete [] buff;
   return temp;
+  */
 }
 
 // Repeat assignment - overload binary operator *=
@@ -171,15 +169,31 @@ Mystring &Mystring::operator*=(const int n)
   return *this;
 }
 
-// Display method
-void Mystring::display() const 
-{
-  std::cout << str << " : " << get_length() << std::endl;
+// Pre-increment overload unary operator++ make the string upper-case
+Mystring &Mystring::operator++()   
+{ 
+  for (size_t i=0; i<std::strlen(str); i++)
+    str[i] = std::toupper(str[i]);   
+  return *this;
+}
+
+// Post-increment overload unary operator++ make the string upper-case
+Mystring Mystring::operator++(int)   
+{ 
+  Mystring temp (*this);
+  this->operator++();
+  return temp;
 }
 
 // Getters
 int Mystring::get_length() const { return strlen(str); }
 const char *Mystring::get_str() const { return str; }
+
+// Display method
+void Mystring::display() const 
+{
+  std::cout << str << " : " << get_length() << std::endl;
+}
 
 // Overloaded insertion operator as a global function
 std::ostream &operator<<(std::ostream &out, const Mystring &rhs) 

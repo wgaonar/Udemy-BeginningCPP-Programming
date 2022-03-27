@@ -56,6 +56,12 @@ public:
 
   // Repeat assignment - overload binary operator *=
   Mystring &operator*=(const int n);
+
+  // Pre-increment overload unary operator++ make the string upper-case
+  Mystring &operator++();
+
+  // Post-increment overload unary operator++ make the string upper-case
+  Mystring operator++(int);   
   
   // Getters
   int get_length() const;                                       
