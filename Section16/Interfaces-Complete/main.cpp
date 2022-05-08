@@ -3,88 +3,111 @@
 
 #include <iostream>
 
-class I_Printable {
-    friend std::ostream &operator<<(std::ostream &os, const I_Printable &obj);
+class I_Printable 
+{
+  friend std::ostream &operator<<(std::ostream &os, const I_Printable &obj);
 public:
-    virtual void print(std::ostream &os) const = 0;
-    virtual ~I_Printable {};
+  virtual void print(std::ostream &os) const = 0;
+  virtual ~I_Printable() {};
 };
 
-std::ostream &operator<<(std::ostream &os, const I_Printable &obj) {
-    obj.print(os);
-    return os;
+std::ostream &operator<<(std::ostream &os, const I_Printable &obj) 
+{
+  obj.print(os);
+  return os;
 }
 
-
-class Account : public I_Printable {
+class Account : public I_Printable 
+{
 public:
-    virtual void withdraw(double amount) {
-        std::cout << "In Account::withdraw" << std::endl;
-    }
-    virtual void print(std::ostream &os) const override {
-        os << "Account display";
-    }
-    virtual ~Account() {  }
+  virtual void withdraw(double amount) 
+  {
+    std::cout << "In Account::withdraw" << std::endl;
+  }
+
+  virtual void print(std::ostream &os) const override 
+  {
+    os << "Account display";
+  }
+    virtual ~Account() {};
 };
 
-class Checking: public Account  {
+class Checking: public Account  
+{
 public:
-    virtual void withdraw(double amount) {
-        std::cout << "In Checking::withdraw" << std::endl;
-    }
-     virtual void print(std::ostream &os) const override {
-        os << "Checking display";
-    }
-    virtual ~Checking() {  }
+  virtual void withdraw(double amount) override
+  {
+    std::cout << "In Checking::withdraw" << std::endl;
+  }
+
+  virtual void print(std::ostream &os) const override 
+  {
+    os << "Checking display";
+  }
+  virtual ~Checking() {};
 };
 
 
-class Savings: public Account {
+class Savings: public Account 
+{
 public:
-    virtual void withdraw(double amount) {
-        std::cout << "In Savings::withdraw" << std::endl;
-    }
-     virtual void print(std::ostream &os) const override {
-        os << "Savings display";
-    }
-    virtual ~Savings() {  }
+  virtual void withdraw(double amount) override
+  {
+    std::cout << "In Savings::withdraw" << std::endl;
+  }
+
+  virtual void print(std::ostream &os) const override 
+  {
+    os << "Savings display";
+  }
+  virtual ~Savings() {};
 };
 
-class Trust: public Account  {
+class Trust: public Account  
+{
 public:
-    virtual void withdraw(double amount) {
-        std::cout << "In Trust::withdraw" << std::endl;
-    }
-     virtual void print(std::ostream &os) const override {
-        os << "Trust display";
-    }
-    virtual ~Trust() {  }
+  virtual void withdraw(double amount) override
+  {
+    std::cout << "In Trust::withdraw" << std::endl;
+  }
+
+  virtual void print(std::ostream &os) const override 
+  {
+    os << "Trust display";
+  }
+  virtual ~Trust() {};
 };
 
-class Dog : public I_Printable {
+class Dog : public I_Printable 
+{
 public:
-  virtual void print(std::ostream &os) const override {
-        os << "Woof woof";
-    } 
+  virtual void print(std::ostream &os) const override 
+  {
+    os << "Woof woof";
+  }
+  virtual ~Dog() {};  
 };
 
-void print(const I_Printable &obj) {
-    std::cout << obj << std::endl;
+void print(const I_Printable &obj) 
+{
+  std::cout << obj << std::endl;
 }
 
 
 int main() {
-    
-    Dog *dog = new Dog();
-    std::cout << *dog<< std::endl;  
-    
-    print(*dog);
-    
-    Account *p1 = new Account();
-    std::cout << *p1<< std::endl;
-        
-    Account *p2 = new Checking();
-    std::cout << *p2<< std::endl;  
+  
+  std::cout << "\n === Print with class Dog ==== " << std::endl;
+  Dog *dog = new Dog();
+  std::cout << *dog<< std::endl;  
+  
+  
+  print(*dog);
+  
+  Account *p1 = new Account();
+  std::cout << *p1<< std::endl;
+      
+  Account *p2 = new Checking();
+  std::cout << *p2<< std::endl;  
 
 //    Account a;
 //    std::cout << a<< std::endl;
@@ -98,8 +121,9 @@ int main() {
 //    Trust t;
 //    std::cout << t << std::endl;
         
-    delete p1;
-    delete p2;
-    delete dog;
-    return 0;
+  delete p1;
+  delete p2;
+  delete dog;
+
+  return 0;
 }
