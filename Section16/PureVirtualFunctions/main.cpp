@@ -10,19 +10,19 @@ private:
 public:
   virtual void draw() = 0;	    // pure virtual function
   virtual void rotate() = 0;    // pure virtual function
-  virtual ~Shape() { }
+  virtual ~Shape() {};
 };
 
 class Open_Shape: public Shape  // Abstract class
 {    
 public:
-  virtual ~Open_Shape() { }
+  virtual ~Open_Shape() {};
 };
 
 class Closed_Shape : public Shape // Abstract class
 {  
 public:
-  virtual ~Closed_Shape() { };
+  virtual ~Closed_Shape() {};
 };
 
 class Line: public Open_Shape // Concrete class
@@ -36,7 +36,7 @@ public:
     {
       std::cout << "Rotating a line" << std::endl;
     }
-    virtual ~Line() {}
+    virtual ~Line() {};
 };
 
 class Circle: public Closed_Shape // Concrete class
@@ -50,7 +50,7 @@ public:
   {
     std::cout << "Rotating a circle" << std::endl;
   }
-  virtual ~Circle() {}
+  virtual ~Circle() {};
 };
 
 class Square: public Closed_Shape // Concrete class
@@ -64,7 +64,7 @@ public:
   {
     std::cout << "Rotating a square" << std::endl;
   }
-    virtual ~Square() {}
+    virtual ~Square() {};
 };
 
 
@@ -88,7 +88,7 @@ int main()
   c.draw();
   c.rotate();
 
-  std::cout << "\n === Dynamic Object Circle ==== " << std::endl;
+  std::cout << "\n === Polymorphism Circle ==== " << std::endl;
   Shape *ptr = new Circle();
   ptr->draw();
   ptr->rotate();
