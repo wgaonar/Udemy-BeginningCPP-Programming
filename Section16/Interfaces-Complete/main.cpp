@@ -100,26 +100,16 @@ int main() {
   Dog *dog = new Dog();
   std::cout << *dog<< std::endl;  
   
-  
+  std::cout << "\n === Print Dog with global function ==== " << std::endl;
   print(*dog);
   
+  std::cout << "\n === Print with class Account ==== " << std::endl;
   Account *p1 = new Account();
   std::cout << *p1<< std::endl;
       
+  std::cout << "\n === Print with class Checking ==== " << std::endl;
   Account *p2 = new Checking();
   std::cout << *p2<< std::endl;  
-
-//    Account a;
-//    std::cout << a<< std::endl;
-//    
-//    Checking c;
-//    std::cout << c << std::endl;
-//
-//    Savings s;
-//    std::cout << s << std::endl;
-//    
-//    Trust t;
-//    std::cout << t << std::endl;
         
   delete p1;
   delete p2;
