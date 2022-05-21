@@ -45,10 +45,13 @@ int main()
   std::cout << *a1 << std::endl;
 
   std::vector<std::unique_ptr<Account>> accounts;
+  accounts.push_back(make_unique<Checking_Account>("James", 1000));
+  accounts.push_back(make_unique<Savings_Account>("Billy", 4000, 5.2));
+  accounts.push_back(make_unique<Trust_Account>("Bobby", 5000, 4.5));
 
-  accounts.push_back( make_unique<Checking_Account>("James", 1000));
-  accounts.push_back( make_unique<Savings_Account>("Billy", 4000, 5.2));
-  accounts.push_back( make_unique<Trust_Account>("Bobby", 5000, 4.5));
+  unique_ptr<Account> acc1 = make_unique<Checking_Account>("Wilmer", 1000);
+  // accounts.push_back(acc1); // error: unique_prt does not admit copy, only move
+  accounts.push_back(std::move(acc1)); 
 
   for (const auto &acc: accounts) // &acc because we can't copy unique_prt, only move
   {    
