@@ -63,13 +63,21 @@ Good luck!
 
 */
 #include <iostream>
-#include <vector>
+#include <set>
 
 using namespace std;
 
+template <typename T>
+void DisplayContainer (const T & container)
+{
+  for (auto element : container)
+  {
+    cout << element << ' ';
+  }
+}
 int main() 
 {
-  vector<int> vec;
+  multiset<int> container;
   char selection {};
   do 
   {
@@ -82,72 +90,104 @@ int main()
     cout << "Q - Quit" << endl;
     cout << "\nEnter your selection: ";
     cin >> selection;
-    
+
     if (selection == 'P' or selection == 'p')
     {
-      if (vec.size() != 0)
+      if (container.size() != 0)
       {
         cout << "[ ";
-        for (size_t i = 0; i < vec.size(); i++)
-        {
-          cout << vec.at(i) << ' ';
-        }
+        DisplayContainer(container);
         cout << "]" << endl;
       }
       else
         cout << "[] - the list is empty" << endl;
-
     }
     else if (selection == 'A' or selection == 'a')
     {
       int number{0};
       cout << "Enter the int to add: ";
       cin >> number;
-      vec.push_back(number);
+      container.insert(number);
       cout << number << " added" << endl;
     } 
     else if (selection == 'M' or selection == 'm')
     {
-      if (vec.size() != 0)
+      if (container.size() != 0)
       {
         int sum {0};
-        for (size_t i = 0; i < vec.size(); i++)
+        for (auto it : container)
         {
-          sum += vec.at(i);
+          sum += it;
         }
-        double average = static_cast<double>(sum) / vec.size();
+        double average = static_cast<double>(sum) / container.size();
         cout << "The mean is: " << average << endl;
       }
       else
         cout << "Unable to calculate the mean - no data" << endl;
     } 
     else if (selection == 'S' or selection == 's')
-      if (vec.size() != 0)
+      if (container.size() != 0)
       {
-        int smallest {vec.at(0)};
-        for (size_t i = 0; i < vec.size(); i++)
+        auto element = container.cbegin();
+        int smallest {*element};
+        for (auto it : container)
         {
-          if (smallest > vec.at(i))
-            smallest = vec.at(i);
+          if (smallest > it)
+            smallest = it;
         }
         cout << "The smallest is: " << smallest << endl;
       }
       else
         cout << "Unable to determine the smallest number - list is empty" << endl; 
     else if (selection == 'L' or selection == 'l')
-      if (vec.size() != 0)
+      if (container.size() != 0)
       {
-        int largest {vec.at(0)};
-        for (size_t i = 0; i < vec.size(); i++)
+        auto element = container.cbegin();
+        int largest {*element};
+        for (auto it : container)
         {
-          if (largest < vec.at(i))
-            largest = vec.at(i);
+          if (largest < it)
+            largest = it;
         }
         cout << "The largest is: " << largest << endl;
       }
       else
-        cout << "Unable to determine the largest number - list is empty" << endl;      
-    else if (selection == 'Q' || selection == 'q')
+        cout << "Unable to determine the largest number - list is empty" << endl; 
+    else if (selection == 'C' or selection == 'c')
+    {
+      if (container.size() != 0)
+      {
+        for (auto it = container.begin(); it != container.end();) 
+        {
+          auto cnt = container.count(*it);
+          std::cout << *it << ":\t" << cnt << endl;
+          std::advance(it, cnt); // move to the next different element
+        }
+      }
+      else
+        cout << "Unable to count - list is empty" << endl;
+    }
+    else if (selection == 'F' or selection == 'f')
+    {
+      if (container.size() != 0)
+      {
+        int number{0};
+        cout << "Enter the int to find: ";
+        cin >> number;
+        auto search = container.find(number);
+        if (search != container.end()) 
+        {
+          cout << number << " found" << endl;
+        } 
+        else 
+        {
+          cout << number << " Not found" << endl;
+        }
+      }
+      else
+        cout << "Unable to find - list is empty" << endl;
+    }      
+    else if (selection == 'Q' or selection == 'q')
         cout << "Goodbye..." << endl;
     else 
         cout << "Unknown option -- try again..." << endl;
