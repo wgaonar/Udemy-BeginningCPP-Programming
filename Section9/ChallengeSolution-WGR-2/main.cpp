@@ -115,9 +115,9 @@ int main()
       if (container.size() != 0)
       {
         int sum {0};
-        for (auto it : container)
+        for (auto cont : container)
         {
-          sum += it;
+          sum += cont;
         }
         double average = static_cast<double>(sum) / container.size();
         cout << "The mean is: " << average << endl;
@@ -130,10 +130,10 @@ int main()
       {
         auto element = container.cbegin();
         int smallest {*element};
-        for (auto it : container)
+        for (auto cont : container)
         {
-          if (smallest > it)
-            smallest = it;
+          if (smallest > cont)
+            smallest = cont;
         }
         cout << "The smallest is: " << smallest << endl;
       }
@@ -144,10 +144,10 @@ int main()
       {
         auto element = container.cbegin();
         int largest {*element};
-        for (auto it : container)
+        for (auto cont : container)
         {
-          if (largest < it)
-            largest = it;
+          if (largest < cont)
+            largest = cont;
         }
         cout << "The largest is: " << largest << endl;
       }
