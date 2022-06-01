@@ -89,7 +89,7 @@ int main()
     index = 0;
     for (size_t j = 0; j < columns; j++)
     {
-      if(j < levels - 1 - i or j > columns - levels + i)
+      if(j < levels - 1 - i or j > levels - 1 + i)
         cout << " ";
       else if ( j < levels)
       {
