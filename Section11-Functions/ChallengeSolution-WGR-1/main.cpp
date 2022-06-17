@@ -99,6 +99,9 @@ using namespace std;
 void Display_Menu(char &selection);
 void Print_Numbers(const vector<int> &numbers);
 void Add_Numbers(vector<int> &numbers);
+double Calculate_Mean(const vector<int> &numbers);
+int Find_Smallest(const vector<int> &numbers);
+int Find_Largest(const vector<int> &numbers);
 
 // Display menu
 void Display_Menu(char &selection)
@@ -141,6 +144,73 @@ void Add_Numbers(vector<int> &numbers)
   cout << num_to_add << " added" << endl;
 }
 
+// Calculate Mean
+double Calculate_Mean(const vector<int> &numbers)
+{
+  if (numbers.size() == 0)
+  {
+    cout << "Unable to calculate mean - no data" << endl;
+    return 0;
+  }
+  else 
+  {
+    int total {};
+    for (auto num: numbers)
+    {
+      total += num;
+    }
+    double mean = static_cast<double>(total)/numbers.size();
+    cout  << "The mean is : " << mean << endl;
+    return mean;
+  }
+}
+
+// Find the smallest number in a vector
+int Find_Smallest(const vector<int> &numbers)
+{
+  if (numbers.size() == 0)
+  { 
+    cout << "Unable to determine the smallest - list is empty" << endl;
+    return 0;
+  }
+  else 
+  {
+    int smallest = numbers.at(0);
+    for (auto num: numbers)
+    {
+      if (num < smallest)
+      {
+        smallest = num;
+      }
+    }
+    cout << "The smallest number is: " << smallest << endl;
+    return smallest;
+  }
+}
+
+// Find the largest number in a vector
+int Find_Largest(const vector<int> &numbers)
+{
+  if (numbers.size() == 0)
+  {
+    cout << "Unable to determine largest - list is empty"<< endl;
+    return 0;
+  }   
+  else 
+  {
+    int largest = numbers.at(0);
+    for (auto num: numbers)
+    {
+      if (num > largest)
+      {
+        largest = num;
+      }
+    }
+    cout << "The largest number is: " << largest << endl;
+    return largest;
+  }
+}
+
 
 int main() 
 {
@@ -158,41 +228,27 @@ int main()
     {
       Add_Numbers(numbers);
     } 
-    else if (selection == 'M' || selection == 'm') {
-          if (numbers.size() == 0)
-              cout << "Unable to calculate mean - no data" << endl;
-          else {
-              int total {};
-              for (auto num: numbers)
-                  total += num;
-              cout << "The mean is : " << static_cast<double>(total)/numbers.size() << endl;
-          }
-      } else if (selection == 'S' || selection == 's') {
-          if (numbers.size() == 0) 
-              cout << "Unable to determine the smallest - list is empty" << endl;
-          else {
-              int smallest = numbers.at(0);
-              for (auto num: numbers)
-                  if (num < smallest)
-                      smallest = num;
-              cout << "The smallest number is: " << smallest << endl;
-          }
-      } else if (selection == 'L' || selection == 'l') {
-          if (numbers.size() == 0)
-              cout << "Unable to determine largest - list is empty"<< endl;   
-          else {
-              int largest = numbers.at(0);
-              for (auto num: numbers)
-                  if (num > largest)
-                      largest = num;
-              cout << "The largest number is: " << largest << endl;
-          }
-      } else if (selection == 'Q' || selection == 'q') {
-          cout << "Goodbye" << endl;
-      } else {
-          cout << "Unknown selection, please try again" << endl;
-      }
-  } while (selection != 'q' && selection != 'Q');
+    else if (selection == 'M' || selection == 'm') 
+    {
+      Calculate_Mean(numbers);
+    } 
+    else if (selection == 'S' || selection == 's') 
+    {
+      Find_Smallest(numbers);   
+    } 
+    else if (selection == 'L' || selection == 'l') 
+    {
+      Find_Largest(numbers);
+    } 
+    else if (selection == 'Q' || selection == 'q') 
+    {
+      cout << "Goodbye" << endl;
+    } 
+    else 
+    {
+      cout << "Unknown selection, please try again" << endl;
+    }
+  } while (selection != 'Q' && selection != 'q');
 
   cout  << endl;
   return 0;
