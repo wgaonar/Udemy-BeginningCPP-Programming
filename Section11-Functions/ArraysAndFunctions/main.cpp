@@ -29,7 +29,7 @@ int main()
   print_array(my_scores, 5);
   set_array(my_scores, 5, 100);
   print_array(my_scores, 5);
-  print_array(my_scores, 5);
+
     
   cout << endl;
   return 0;
