@@ -27,7 +27,7 @@ int main()
   int *p1 {nullptr};
   double *p2 {nullptr};
   unsigned long long *p3 {nullptr};
-  vector<string>  *p4{nullptr};
+  vector<string> *p4 {nullptr};
   string *p5 {nullptr};
   
   cout << "\nValue of p1 is: " << p1 << endl;
