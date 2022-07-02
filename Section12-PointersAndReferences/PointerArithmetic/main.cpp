@@ -54,14 +54,14 @@ int main()
   char_ptr0 = &name[0];   // Same as char_ptr = name, points to 'F' but contains "Frank"
 
   // With char arrays instead of address, C++ display de string contents from the element to the last array element
-  cout << "Value of name: " << name << endl;
-  cout << "Value of *name: " << *name << endl;
+  cout << "Value of name: " << name << endl;    // Frank
+  cout << "Value of *name: " << *name << endl;  //F
   
-  cout << "\nValue of char_ptr: " << char_ptr << endl;
-  cout << "Value of *char_ptr: " << *char_ptr << endl;
+  cout << "\nValue of char_ptr: " << char_ptr << endl; // Frank
+  cout << "Value of *char_ptr: " << *char_ptr << endl; //F
 
-  cout  << "\nValue of char_ptr0: " << char_ptr0 << endl;
-  cout  << "Value of *char_ptr0: " << *char_ptr0 << endl;
+  cout  << "\nValue of char_ptr0: " << char_ptr0 << endl; // Frank
+  cout  << "Value of *char_ptr0: " << *char_ptr0 << endl; //F
 
   // In C++ pointing to char array's element contains the rest of the C-style string
   char *char_ptr1{nullptr};
