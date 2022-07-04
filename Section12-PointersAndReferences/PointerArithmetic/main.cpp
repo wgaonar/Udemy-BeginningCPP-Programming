@@ -55,13 +55,13 @@ int main()
 
   // With char arrays instead of address, C++ display de string contents from the element to the last array element
   cout << "Value of name: " << name << endl;    // Frank
-  cout << "Value of *name: " << *name << endl;  //F
+  cout << "Value of *name: " << *name << endl;  // F
   
   cout << "\nValue of char_ptr: " << char_ptr << endl; // Frank
-  cout << "Value of *char_ptr: " << *char_ptr << endl; //F
+  cout << "Value of *char_ptr: " << *char_ptr << endl; // F
 
   cout  << "\nValue of char_ptr0: " << char_ptr0 << endl; // Frank
-  cout  << "Value of *char_ptr0: " << *char_ptr0 << endl; //F
+  cout  << "Value of *char_ptr0: " << *char_ptr0 << endl; // F
 
   // In C++ pointing to char array's element contains the rest of the C-style string
   char *char_ptr1{nullptr};
@@ -71,10 +71,10 @@ int main()
 
 
   cout << "\n-------------------------" << endl;
-  cout  << "Value of char_ptr1: " << char_ptr1 << endl;
-  cout  << "Value of *char_ptr1: " << *char_ptr1 << endl; 
-  cout  << "\nValue of char_ptr2: " << char_ptr2 << endl;
-  cout  << "Value of *char_ptr2: " << *char_ptr2 << endl; 
+  cout  << "Value of char_ptr1: " << char_ptr1 << endl;   // rank
+  cout  << "Value of *char_ptr1: " << *char_ptr1 << endl; // r
+  cout  << "\nValue of char_ptr2: " << char_ptr2 << endl; // ank
+  cout  << "Value of *char_ptr2: " << *char_ptr2 << endl; // a
 
   cout << "\nIn the string " << name << ", the character '" << *char_ptr2 << "' is " << (char_ptr2 - char_ptr0) << " characters away from " <<  *char_ptr0  << endl;
 

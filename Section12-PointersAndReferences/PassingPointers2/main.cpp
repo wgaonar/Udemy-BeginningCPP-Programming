@@ -6,25 +6,34 @@
 
 using namespace std;
 
+void swap(int *a, int *b) 
+{
+  int temp = *a;
+  *a = *b;
+  *b = temp;
+}
 
-void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+// Performs the swap without using temp.
+void swap2(int *a, int *b) 
+{
+  *a = *a + *b;
+  *b = *a - *b;
+  *a = *a - *b;
 }
 
 
-int main() {
-    int x {100}, y {200};
-    cout << "\nx: " << x <<  endl;
-    cout << "y: " << y <<  endl;
-    
-    swap(&x, &y);
-    
-    cout << "\nx: " << x <<  endl;
-    cout << "y: " << y <<  endl;
-    
-    cout  << endl;
-    return 0;
+int main() 
+{
+  int x {100}, y {200};
+  cout << "\nx: " << x <<  endl;
+  cout << "y: " << y <<  endl;
+  
+  swap2(&x, &y);
+  
+  cout << "\nx: " << x <<  endl;
+  cout << "y: " << y <<  endl;
+  
+  cout  << endl;
+  return 0;
 }
 
