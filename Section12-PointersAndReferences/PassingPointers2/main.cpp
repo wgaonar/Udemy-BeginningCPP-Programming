@@ -25,13 +25,13 @@ void swap2(int *a, int *b)
 int main() 
 {
   int x {100}, y {200};
-  cout << "\nx: " << x <<  endl;
-  cout << "y: " << y <<  endl;
+  cout << "\nx: " << x <<  endl;    // 100
+  cout << "y: " << y <<  endl;      // 200
   
   swap2(&x, &y);
   
-  cout << "\nx: " << x <<  endl;
-  cout << "y: " << y <<  endl;
+  cout << "\nx: " << x <<  endl;    // 100
+  cout << "y: " << y <<  endl;      // 200
   
   cout  << endl;
   return 0;

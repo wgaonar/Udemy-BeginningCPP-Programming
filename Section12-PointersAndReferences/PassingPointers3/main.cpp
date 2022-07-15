@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void display( const vector<string> *const  v) 
+void display( const vector<string> *const v) 
 {
   //(*v).at(0) = "Funny"; // Not allowed by the first const
   for (auto str: *v)
@@ -16,6 +16,7 @@ void display( const vector<string> *const  v)
   //v = nullptr;          // Not allowed by the second const
 }
 
+// Passing an array through a pointer
 void display(int *array, size_t size, int sentinel) 
 {
   // Working with subscript notation
@@ -35,6 +36,7 @@ void display(int *array, size_t size, int sentinel)
   cout << endl;
 }
 
+// Passing and array in a classic way via a reference
 void display2(int array[], size_t size, int sentinel) 
 {
   // Working with subscript notation
@@ -60,8 +62,8 @@ int main()
   vector<string> stooges {"Larry", "Moe", "Curly"};
   display(&stooges);
   
-  cout << "\nPointer to an array-----------------------------" << endl;
   int scores[] {100,98,97,79,85,-1};
+  cout << "\nPointer to an array-----------------------------" << endl;
   display(scores, 6, -1);
 
   cout << "\nReference to an array-----------------------------" << endl;
