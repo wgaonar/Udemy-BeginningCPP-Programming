@@ -40,20 +40,20 @@
 
 using namespace std;
 
-void print(const int *const array, size_t size) 
+void print(const int* const array, size_t size) 
 {
   cout << "[ ";
   for (size_t i{0}; i < size; ++i)
   {
-    cout << array[i] << " ";
+    cout << array[i] << " "; // Same as *(array + i)
   }
   cout << "]" << endl;
 }
 
-int* apply_all(int* array1, size_t size1, int* array2, size_t size2)
+int* apply_all(const int* const array1, size_t size1, const int* const  array2, size_t size2)
 {
   int* new_storage {nullptr};
-  new_storage = new int [size1 * size2];
+  new_storage = new int[size1 * size2];
 
   for (size_t i = 0; i < size2; i++)
   {
@@ -87,6 +87,7 @@ int main()
   
   cout << endl;
 
+  delete [] results;
   return 0;
 }
 
