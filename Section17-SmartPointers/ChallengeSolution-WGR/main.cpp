@@ -87,7 +87,6 @@ public:
 std::unique_ptr<std::vector<std::shared_ptr<Test>>> make()
 {
   auto ptr = std::make_unique<std::vector<std::shared_ptr<Test>>>();
-  // std::unique_ptr<std::vector<std::shared_ptr<Test>>> ptr {new std::vector<std::shared_ptr<Test>>()}; // Same as the line above
   return ptr;
 }
 
