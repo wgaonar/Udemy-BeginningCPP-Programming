@@ -98,7 +98,7 @@ void fill(std::vector<std::shared_ptr<Test>>& vec, int num)
     std::cout << "Enter data point [" << i << "] : ";
     std::cin >> data;
     std::shared_ptr<Test> ptr = std::make_shared<Test> (data);
-    // std::shared_ptr<Test> prt {new Test(data)}; // same as the line before
+    // std::shared_ptr<Test> prt {new Test(data)}; // same as the line above
     vec.push_back(ptr);
   }
 }
