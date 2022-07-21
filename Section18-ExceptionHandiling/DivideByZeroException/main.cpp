@@ -17,7 +17,7 @@ int main()
   {
     if (gallons == 0)
     {
-      throw 0;  // It cane be an integer, character, pointer or object
+      throw 0;  // It can be an integer, character, pointer or object
     }
     miles_per_gallon = static_cast<double>(miles) / gallons;
     std::cout << "Result: " << miles_per_gallon << std::endl;
