@@ -13,7 +13,7 @@ private:
   int xp;
 
 public:
-  Player(std::string name_val ="None", int health_val = 0, int xp_val = 0);
+  Player(std::string name_val = "None", int health_val = 0, int xp_val = 0);
   //  Player() {}    // Will cause a compiler error because an ambiguity situation with the default constructor parameters.
 };
 
@@ -25,8 +25,8 @@ Player::Player(std::string name_val, int health_val, int xp_val) :
 {cout << "The delegate constructor with three-args" << endl;}
 
 
-int main() {
-    
+int main() 
+{
   Player empty;
   Player frank {"Frank"};
   Player hero {"Hero", 100};
