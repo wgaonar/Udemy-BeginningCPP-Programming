@@ -34,7 +34,7 @@ void func_c()
   std::cout << "Starting func_c" << std::endl;
   // Throw the exception!!!
   throw 100;
-  std::cout << "Ending func_c" << std::endl; //This does not excecute
+  std::cout << "Ending func_c" << std::endl; //This does not execute
 }
 
 int main() 
