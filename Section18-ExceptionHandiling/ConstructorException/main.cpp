@@ -18,7 +18,7 @@ int main()
   }
   catch (const IllegalBalanceException &ex)
   {
-      std::cerr << ex.message << std::endl;
+    std::cerr << ex.message << std::endl;
   }
 
   std::cout << "Program completed successfully" << std::endl;
