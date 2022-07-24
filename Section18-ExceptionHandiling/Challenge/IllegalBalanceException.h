@@ -4,8 +4,8 @@
 class IllegalBalanceException
 {
 public:
-    IllegalBalanceException() {}
-    ~IllegalBalanceException() {}
+  IllegalBalanceException() {}
+  ~IllegalBalanceException() {}
 };
 
 #endif // __ILLEGAL_BALANCE_EXCEPTION_H__
