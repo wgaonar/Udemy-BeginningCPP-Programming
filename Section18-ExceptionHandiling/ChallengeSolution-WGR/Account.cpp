@@ -9,11 +9,6 @@ Account::Account(std::string name, double balance)
   }
 }
 
-std::string Account::get_name() const
-{
-  return name;
-}
-
 bool Account::deposit(double amount) 
 {
   if (amount < 0) 
