@@ -20,9 +20,6 @@ public:
   // Constructor
   Account(std::string name = def_name, double balance = def_balance);
 
-  // Getters
-  virtual std::string get_name() const;
-
   // Modifiers
   virtual bool deposit(double amount) = 0;  // Must be implemented in the inherited classes
   virtual bool withdraw(double amount) = 0; // Must be implemented in the inherited classes
