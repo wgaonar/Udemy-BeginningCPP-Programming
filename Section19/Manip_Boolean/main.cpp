@@ -15,7 +15,7 @@ int main()
   std::cout << "boolalpha   (10 == 10) : " << (10 == 10)  << std::endl;
   std::cout << "boolalpha   (10 == 20) : " << (10 == 20)  << std::endl;
   
-    // setting still stays for future boolean insertions
+  // setting still stays for future boolean insertions
   std::cout << "boolalpha   (10 == 10) : " << (10 == 10)  << std::endl;
   std::cout << "boolalpha   (10 == 20) : " << (10 == 20)  << std::endl;
   
