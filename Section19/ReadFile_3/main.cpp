@@ -26,6 +26,8 @@ int main()
     std::cout << line << std::endl;
   }
   
+  // Close the file, don't forget to do it!!!
   in_file.close();
+  
   return 0;
 }
