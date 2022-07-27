@@ -18,21 +18,24 @@ void line()
   std::cout << std::setfill(' '); // Reset setfill to blank spaces
 }
 
-struct City {
-    std::string name;
-    long population;
-    double cost;
+struct City 
+{
+  std::string name;
+  long population;
+  double cost;
 };
 
 // Assume each country has at least 1 city
-struct Country {
-    std::string name;
-    std::vector<City> cities;
+struct Country 
+{
+  std::string name;
+  std::vector<City> cities;
 };
 
-struct Tours {
-    std::string title;
-    std::vector<Country> countries;
+struct Tours 
+{
+  std::string title;
+  std::vector<Country> countries;
 };
 
 int main()

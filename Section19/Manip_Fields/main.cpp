@@ -28,17 +28,16 @@ int main()
   std::cout << hello << std::endl;  // Hello
     
   // Set field width to 10 
-  // Note the default justification is right for num1 only!
+  // Note the default justification (right) is for num1 only!
   std::cout << "\n--width 10 for num1------------------------------------" << std::endl;
   ruler(); 
-  std::cout << std::setw(10) 
-            << num1 
+  std::cout << std::setw(10) << num1 
             << num2 
             << hello 
             << std::endl;   //      12341234.57Hello
     
   // Set field width to 10 for the first 2 outputs
-  // Note the default justification is right for both
+  // Note the default justification (right) is for num1 and num2
   std::cout << "\n--width 10 for num1 and num2-------------------------" << std::endl;
   ruler(); 
   std::cout << std::setw(10) << num1 
