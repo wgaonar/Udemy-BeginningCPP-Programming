@@ -28,7 +28,7 @@ int main()
 
   // Read the answer key and store it
   std::string answer_key{};
-  std::getline(in_file, answer_key);
+  in_file >> answer_key;
 
   std::map<std::string,int> grades;  // Map to store the pairs student->grade
 
@@ -36,16 +36,14 @@ int main()
   std::string answer{};  // The variable to store the student's grade
   double average_grade {0};
 
-  // Read continuously the file checking eof() method
-  while (!in_file.eof())
+  // Read continuously the file ina refactor way
+  while (in_file >> name >> answer)
   {
-    in_file >> name >> answer;
-
     // Determine the numeric grade
     int grade {0};
-    for (size_t i = 0; i < 5; i++)
+    for (size_t i = 0; i < answer_key.size(); i++)
     {
-      if (answer[i] == answer_key[i])
+      if (answer.at(i) == answer_key.at(i))
       {
         grade++;
       }
