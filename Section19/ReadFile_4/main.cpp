@@ -1,6 +1,6 @@
 // Section 19
 // Read File 4
-// Read and display word by word Shakespeare Sonnet 18 poem using getline
+// Read and display word by word Shakespeare Sonnet 18 poem using getline()
 #include <iostream>
 #include <fstream>
 #include <sstream> // To use istringstream objects to split into words a line
