@@ -42,7 +42,7 @@ int main()
   std::string answer{};  // The variable to store the student's grade
   double average_grade {0};
 
-  // Read continuously the file ina refactor way
+  // Read continuously the file in a refactor way
   while (in_file >> name >> answer)
   {
     // Determine the numeric grade
@@ -56,7 +56,7 @@ int main()
     }
     average_grade += grade;
     
-    // Store the grades pair
+    // Store the student's name and grade pair
     Student person{name, grade};
     grades.push_back(person);    
   }
@@ -72,7 +72,7 @@ int main()
   line();
 
   // Print the grades
-  for(auto &student : grades)
+  for(const auto &student : grades)
   {
     std::cout << std::setw(15) << std::left << student.name; 
     std::cout << std::setw(5) << std::right << student.grade << std::endl;

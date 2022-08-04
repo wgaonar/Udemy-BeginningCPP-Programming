@@ -50,7 +50,7 @@ int main()
     }
     average_grade += grade;
     
-    // Store the grades pair
+    // Store the student's name and grade in a pair
     grades.insert(make_pair(name, grade));    
   }
 
@@ -65,7 +65,7 @@ int main()
   line();
 
   // Print the grades
-  for(auto &element : grades)
+  for(const auto &element : grades)
   {
     std::cout << std::setw(15) << std::left << element.first; 
     std::cout << std::setw(5) << std::right << element.second << std::endl;
