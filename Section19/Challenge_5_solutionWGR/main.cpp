@@ -7,7 +7,7 @@ using namespace std;
 int main() 
 {
   std::ifstream in_file {"./romeoandjuliet.txt"};
-  std::ofstream out_file{"./romeoandjuliet.txt"};
+  std::ofstream out_file{"./romeoandjuliet_out.txt"};
 
   // Check if the file was open correctly
   if (!in_file)
@@ -24,10 +24,11 @@ int main()
   }
 
   string line{};
-  int line_counter{0};
+  int line_counter{1};
   while (getline(in_file, line))
   {
-    out_file << setw(5) << line_counter << line << endl;
+    out_file << setw(7) << left << line_counter << line << endl;
+    line_counter++;
   }
   
   cout << "File copied" << std::endl;

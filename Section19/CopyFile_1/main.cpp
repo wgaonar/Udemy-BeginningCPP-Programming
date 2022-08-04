@@ -1,6 +1,6 @@
 // Section 19
-// Copy File 2
-// File copy using get/put
+// Copy File 1
+// File copy using getline()
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -16,7 +16,7 @@ int main()
     std::cerr << "Error opening input file" << std::endl;
     return 1;
   }
-  
+
   // Check if the file was created correctly
   if (!out_file) 
   {
@@ -24,10 +24,10 @@ int main()
     return 1;
   }
   
-  char c;
-  while (in_file.get(c))
+  std::string line {};
+  while (getline(in_file, line))
   {
-    out_file.put(c);
+    out_file << line << std::endl;
   }
   
   std::cout << "File copied" << std::endl;
