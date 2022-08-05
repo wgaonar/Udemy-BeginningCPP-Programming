@@ -27,8 +27,15 @@ int main()
   int line_counter{1};
   while (getline(in_file, line))
   {
-    out_file << setw(7) << left << line_counter << line << endl;
-    line_counter++;
+    if(line == "" || line == "\r")
+    {
+      out_file << endl;
+    }
+    else
+    {
+      out_file << setw(7) << left << line_counter << line << endl;
+      line_counter++;
+    }
   }
   
   cout << "File copied" << std::endl;
