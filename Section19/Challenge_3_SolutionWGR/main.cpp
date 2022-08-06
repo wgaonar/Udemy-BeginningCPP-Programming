@@ -30,11 +30,11 @@ int main()
 
   while (in_file >> word)
   {
+    total_words++;  
     if (word.find(word_to_search) != string::npos)
     {
       word_count++;
     }
-    total_words++;  
   }
     
   cout << total_words << " words were searched...\n";

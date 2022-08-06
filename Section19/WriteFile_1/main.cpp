@@ -1,5 +1,5 @@
 // Section 19
-// Write File
+// Write File with user input line
 #include <iostream>
 #include <fstream>
 #include <string>

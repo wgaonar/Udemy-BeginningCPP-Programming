@@ -26,7 +26,7 @@ int main()
   {    
     std::cout << std::endl << line << std::endl; // Print the line
 
-    std::istringstream ss(line); // Object used to split the line around spaces.
+    std::istringstream ss{line}; // Object used to split the line around spaces.
     std::string word;
 
     // Traverse through all words in the line

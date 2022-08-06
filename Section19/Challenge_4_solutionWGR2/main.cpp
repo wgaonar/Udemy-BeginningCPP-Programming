@@ -1,3 +1,6 @@
+// Section 19
+// Copy the contest of a file into another with line number
+// only on the lines and NOT in the blank lines
 #include <iostream>
 #include <fstream>
 #include <iomanip>
