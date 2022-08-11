@@ -4,9 +4,7 @@
 
 using namespace std;
 
-void print_array(const int arr[], size_t size);
-void set_array(int arr[], size_t size, int value);
-
+// Print the array elements
 void print_array(const int arr[], size_t size) 
 {  
   // const
