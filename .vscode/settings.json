@@ -72,6 +72,9 @@
     "set": "cpp",
     "stack": "cpp",
     "map": "cpp",
-    "filesystem": "cpp"
+    "filesystem": "cpp",
+    "list": "cpp",
+    "numeric": "cpp",
+    "queue": "cpp"
   }
 }
