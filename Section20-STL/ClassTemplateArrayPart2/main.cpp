@@ -54,34 +54,34 @@ public:
   }
 };
 
-int main() {
+int main() 
+{
     
-    Array<int, 5> nums; 
-    nums.fill(10);
-    std::cout << nums << std::endl;             // [ 10 10 10 10 10 ]
+  Array<int, 5> nums; 
+  nums.fill(10);
+  std::cout << nums << std::endl;             // [ 10 10 10 10 10 ]
 
-    nums[0] = 1000;
-    nums[3] = 2000;
-    std::cout << nums << std::endl;             // [ 1000 10 10 2000 10 ]
-    
-    Array<int, 100> nums2 {1};                    
-    std::cout << "The size of nums2 is: "<< nums2.get_size() << std::endl;    // 100
-    std::cout << nums2 << std::endl;                                          // [ 1 1 1 1 ... 1 ]
+  nums[0] = 1000;
+  nums[3] = 2000;
+  std::cout << nums << std::endl;             // [ 1000 10 10 2000 10 ]
+  
+  Array<int, 100> nums2 {1};                    
+  std::cout << "The size of nums2 is: "<< nums2.get_size() << std::endl;    // 100
+  std::cout << nums2 << std::endl;                                          // [ 1 1 1 1 ... 1 ]
 
-    Array<std::string, 10> strings(std::string{"Frank"}); 
-    std::cout << "The size of strings is: "<< strings.get_size() << std::endl;  // 10
-    std::cout << strings << std::endl;                                          // [Frank Frank ... Frank ]
-    
-    strings[0] = std::string{"Larry"};
-    std::cout << strings << std::endl;                                          // [Larry Frank ... Frank ]
-    
-    strings[1] = "Moe";                                                         // Initialize in C-style string works too
-    std::cout << strings << std::endl;                                          // [Larry Moe ... Frank ]
-    
-    strings.fill(std::string{"X"});                                             
-    std::cout << strings << std::endl;                                          // [X X ... X ]
+  Array<std::string, 10> strings(std::string{"Frank"}); 
+  std::cout << "The size of strings is: "<< strings.get_size() << std::endl;  // 10
+  std::cout << strings << std::endl;                                          // [Frank Frank ... Frank ]
+  
+  strings[0] = std::string{"Larry"};
+  std::cout << strings << std::endl;                                          // [Larry Frank ... Frank ]
+  
+  strings[1] = "Moe";                                                         // Initialize in C-style string works too
+  std::cout << strings << std::endl;                                          // [Larry Moe ... Frank ]
+  
+  strings.fill(std::string{"X"});                                             
+  std::cout << strings << std::endl;                                          // [X X ... X ]
 
-    
-    return 0;
+  return 0;
 }
 
