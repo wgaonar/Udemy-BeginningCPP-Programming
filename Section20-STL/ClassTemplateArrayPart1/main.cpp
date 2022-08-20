@@ -28,6 +28,7 @@ private:
 
 public:
   Array() = default;
+
   Array(int init_val) 
   {
     for (auto &item: values)
@@ -35,6 +36,7 @@ public:
       item = init_val;
     }
   }
+
   void fill(int val) 
   {
     for (auto &item: values )
@@ -42,6 +44,7 @@ public:
       item = val;
     }
   }
+  
   int get_size() const 
   {
     return size;
