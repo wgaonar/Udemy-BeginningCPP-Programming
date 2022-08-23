@@ -31,13 +31,13 @@ public:
     return age;
   }
 
-  // Overloaded operator "<" for using with algorithm
+  // Overloaded operator "<" for using with STL algorithms
   bool operator<(const Person &rhs) const 
   {
     return this->age < rhs.age;
   }
 
-  // Overloaded operator "==" for using with algorithm
+  // Overloaded operator "==" for using with STL algorithms
   bool operator==(const Person &rhs) const 
   {
     return (this->name == rhs.name && this->age == rhs.age);
