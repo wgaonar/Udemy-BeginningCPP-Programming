@@ -1,5 +1,5 @@
 // Section 20
-// Displaytion templates
+// Display templates
 #include <iostream>
 #include <string>
 

@@ -50,36 +50,45 @@ std::ostream &operator<< (std::ostream &out, const Person &rhs)
   return out;
 }
 
-// Use for_each and a lambda expression to display vector elements
-void display2(const std::vector<int> &vec) 
+// Use for_each and a lambda expression to display vector of any type
+template <typename T>
+void display_vector_for_each(const std::vector<T> &vec) 
 {
   std::cout << "[ ";
-  std::for_each(vec.begin(), vec.end(), [](int x) { std::cout << x << " ";});
+  std::for_each(vec.begin(), vec.end(), [](T x) { std::cout << x << " ";});
   std::cout << "]" << std::endl;
 }
 
-// template function to display any vector
+// template function to display a vector of any type
 template <typename T>
-void display(const std::vector<T> &vec) {
+void display_vector(const std::vector<T> &vec) {
     std::cout << "[ ";
     for (const auto &elem: vec)
         std::cout << elem << " ";
     std::cout <<  "]"<< std::endl;
 }
 
+// template function to display_vector any container
+template <typename T>
+void display_container(const T &container) {
+    std::cout << "[ ";
+    for (const auto &elem: container)
+        std::cout << elem << " ";
+    std::cout <<  "]"<< std::endl;
+}
 
 void test1() 
 {
-  std::cout << "\nTest1 - display =========================" << std::endl;
+  std::cout << "\nTest1 - display_vector =========================" << std::endl;
 
   std::vector<int> vec {1,2,3,4,5};
-  display(vec);
+  display_vector_for_each(vec);
   
   vec = {2,4,5,6};
-  display2(vec);
+  display_vector(vec);
   
   std::vector<int> vec1 (10, 100);    // ten 100s in the vector
-  display(vec1);
+  display_container(vec1);
 }
 
 void test2() 
@@ -87,25 +96,25 @@ void test2()
   std::cout << "\nTest2 - .size() and .capacity() ================" << std::endl;
 
   std::vector<int> vec {1,2,3,4,5};
-  display(vec);
+  display_vector(vec);
   std::cout << "vec size: " << vec.size() << std::endl;
   std::cout << "vec max size: " << vec.max_size() << std::endl;
   std::cout << "vec capacity: " << vec.capacity() << "\n\n";
   
   vec.push_back(6);
-  display(vec);
+  display_vector(vec);
   std::cout << "vec size: " << vec.size() << std::endl;
   std::cout << "vec max size: " << vec.max_size() << std::endl;
   std::cout << "vec capacity: " << vec.capacity() << "\n\n";
   
   vec.shrink_to_fit();    // C++11
-  display(vec);
+  display_vector(vec);
   std::cout << "vec size: " << vec.size() << std::endl;
   std::cout << "vec max size: " << vec.max_size() << std::endl;
   std::cout << "vec capacity: " << vec.capacity() << "\n\n";
   
   vec.reserve(100);
-  display(vec);
+  display_vector(vec);
   std::cout << "vec size: " << vec.size() << std::endl;
   std::cout << "vec max size: " << vec.max_size() << std::endl;
   std::cout << "vec capacity: " << vec.capacity() << "\n\n";
@@ -116,12 +125,12 @@ void test3()
   std::cout << "\nTest3 - .at() =========================" << std::endl;
 
   std::vector<int> vec {1,2,3,4,5};
-  display(vec);
+  display_vector(vec);
   
   vec[0] = 100;
   vec.at(1) = 200;
   
-  display(vec);
+  display_vector(vec);
 }
 
 void test4() 
@@ -130,16 +139,16 @@ void test4()
   std::vector<Person> stooges;
   
   Person p1 {"Larry", 18};
-  display(stooges);
+  display_vector(stooges);
   
   stooges.push_back(p1);                  // Creates a copy
-  display(stooges);
+  display_vector(stooges);
   
   stooges.push_back(Person{"Moe", 25});   // Use move() semantics
-  display(stooges);
+  display_vector(stooges);
   
   stooges.emplace_back("Curly", 30);      // Use emplace_back!!!
-  display(stooges);
+  display_vector(stooges);
 }
 
 void test5() 
@@ -152,27 +161,27 @@ void test5()
       {"Curly", 30}
   };
   
-  display(stooges);
+  display_vector(stooges);
   std::cout << "\nFront: " << stooges.front() << std::endl;
   std::cout << "Back: " << stooges.back() << std::endl;
   
   stooges.pop_back();
-  display(stooges);
+  display_vector(stooges);
 }
 
 void test6_1() 
 {
   std::cout << "\nTest6_1 - .erase() =================" << std::endl;
   std::vector<int> vec {1,2,3,4,5};
-  display(vec);
+  display_vector(vec);
   
   vec.clear();    // remove all elements
-  display(vec);
+  display_vector(vec);
   
   vec = {1,2,3,4,5,6,7,8,9,10};
-  display(vec);   // [ 1 2 3 4 5 6 7 8 9 10 ]
+  display_vector(vec);   // [ 1 2 3 4 5 6 7 8 9 10 ]
   vec.erase(vec.begin(), vec.begin() + 2); // [ 3 4 5 6 7 8 9 10 ]
-  display(vec);
+  display_vector(vec);
 
   // Erase all odd numbers using for loop
   vec = {1,2,3,4,5,6,7,8,9,10};
@@ -187,7 +196,7 @@ void test6_1()
       ++it; // only increment if not erased!
     }
   }
-  display(vec);
+  display_vector(vec);
 
   // erase all even numbers using while loop
   vec = {1,2,3,4,5,6,7,8,9,10};
@@ -203,21 +212,21 @@ void test6_1()
       it++;   // only increment if not erased!
     }
   }
-  display(vec);
+  display_vector(vec);
 }
 
 void test6_2() 
 {
-  std::cout << "\nTest6_2 - std::erase() std::erase_if() =================" << std::endl;
+  std::cout << "\nTest6_2 - std::erase() std::erase_if() C++20=================" << std::endl;
   std::vector<int> vec {1,2,3,4,5,6,7,8,9,10};
 
   // erase the number 3
-  std::erase(vec, 3); // [ 1 2 4 5 6 7 8 9 10 ]
-  display(vec);
+  std::erase(vec, 3); // [ 1 2 4 5 6 7 8 9 10 ] since C++20
+  display_vector(vec);
 
   // erase all even numbers using erase_if()
-  std::erase_if(vec, [](int x) { return x % 2 == 0; }); // [ 1 5 7 9 ]
-  display(vec);
+  std::erase_if(vec, [](int x) { return x % 2 == 0; }); // [ 1 5 7 9 ] since C++20
+  display_vector(vec);
 }
 
 void test7() 
@@ -227,13 +236,13 @@ void test7()
   std::vector<int> vec1 {1,2,3,4,5};
   std::vector<int> vec2 {10,20,30,40,50};
   
-  display(vec1);
-  display(vec2);
+  display_vector(vec1);
+  display_vector(vec2);
   std::cout << std::endl;
 
   vec2.swap(vec1);
-  display(vec1);
-  display(vec2);
+  display_vector(vec1);
+  display_vector(vec2);
 }
 
 void test8() 
@@ -241,15 +250,15 @@ void test8()
   std::cout << "\nTest8 std::sort() =========================" << std::endl;
 
   std::vector<int> vec1 {1,21,3,40,12};    
-  display(vec1);
+  display_vector(vec1);
 
   // Sort with default operator<
   std::sort(vec1.begin(), vec1.end());
-  display(vec1);
+  display_vector(vec1);
 
   // Sort with standard library compare function object
   std::sort(vec1.begin(), vec1.end(), std::greater<int>());
-  display(vec1);
+  display_vector(vec1);
 }
 
 void test9() 
@@ -264,27 +273,27 @@ void test9()
   
   std::vector<int> vec1 {1,2,3,4,5};   
   std::vector<int> vec2 {10,20};
-  display(vec1); 
-  display(vec2);
+  display_vector(vec1); 
+  display_vector(vec2);
   std::cout << std::endl;
 
   // copy vec1 at the end of vec2
   std::copy(vec1.begin(), vec1.end(), std::back_inserter(vec2));
-  display(vec1); // [ 1 2 3 4 5 6 7 8 9 10 ]
-  display(vec2); // [ 10 20 1 2 3 4 5 6 7 8 9 10 ]
+  display_vector(vec1); // [ 1 2 3 4 5 6 7 8 9 10 ]
+  display_vector(vec2); // [ 10 20 1 2 3 4 5 6 7 8 9 10 ]
   std::cout << std::endl;
 
   vec1 = {1,2,3,4,5,6,7,8,9,10};
   vec2 = {10,20};
-  display(vec1);
-  display(vec2);
+  display_vector(vec1);
+  display_vector(vec2);
   std::cout << std::endl;
   
   // copy the even numbers of vec1 at the end of vec2
   std::copy_if(vec1.begin(), vec1.end(), std::back_inserter(vec2),
           [](int x) { return x%2 == 0; });
-  display(vec1); // [ 1 2 3 4 5 6 7 8 9 10 ]
-  display(vec2); // [ 10 20 2 4 6 8 10 ]
+  display_vector(vec1); // [ 1 2 3 4 5 6 7 8 9 10 ]
+  display_vector(vec2); // [ 10 20 2 4 6 8 10 ]
   std::cout << std::endl;
 }
 
@@ -302,7 +311,7 @@ void test10()
       std::back_inserter(vec3),
       [](int x, int y) { return x * y;});
       
-  display(vec3);
+  display_vector(vec3);
     
 }
 
@@ -313,8 +322,8 @@ void test11() {
   std::cout << "\nTest11 - .insert() =========================" << std::endl;
   std::vector<int> vec1 {1,2,3,4,5,6,7,8,9,10};
   std::vector<int> vec2 {100,200,300,400};
-  display(vec1);
-  display(vec2);
+  display_vector(vec1);
+  display_vector(vec2);
   std::cout << std::endl;
 
   // Option 1: Find the position in vec1 where vec2 is going to be inserted
@@ -333,7 +342,7 @@ void test11() {
   {
     std::cout << "Sorry, 5 not found" << std::endl;
   }
-  display(vec1); // [ 1 2 3 4 100 200 300 400 5 6 7 8 9 10 ]
+  display_vector(vec1); // [ 1 2 3 4 100 200 300 400 5 6 7 8 9 10 ]
 }
 
 int main()  
