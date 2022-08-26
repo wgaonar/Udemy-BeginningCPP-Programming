@@ -65,7 +65,7 @@ int main()
                   
   // setfill to a dash
   // This left justification is persistent from the previous display
-  std::cout << "\n--width 10 for num1 and num2 and hello left for all setfill to dash------------" << std::endl;
+  std::cout << "\n--width 10 for num1, num2 and hello left for all and setfill to dash------------" << std::endl;
   ruler(); 
   std::cout << std::setfill('-');
   std::cout << std::setw(10) << num1 
