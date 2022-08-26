@@ -269,7 +269,7 @@ void test9()
   // There is also a front_inserter we can use with deques and lists
   // Copy one list to another using an iterator and back_inserter
   
-  std::cout << "\nTest9 - std::copy() std::copy_if() =========================" << std::endl;
+  std::cout << "\nTest9 - std::copy() std::copy_if() std::front/back_inserter()==========" << std::endl;
   
   std::vector<int> vec1 {1,2,3,4,5};   
   std::vector<int> vec2 {10,20};
