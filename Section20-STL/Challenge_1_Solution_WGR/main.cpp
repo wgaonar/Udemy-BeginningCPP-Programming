@@ -10,15 +10,17 @@
 
 bool is_palindrome(const std::string& s)
 {
+  // Push the string characters to the deque
   std::deque<char> d;
   for (const char& c: s)
   {
-    if (std::isalpha(c))
+    if (std::isalpha(c))  // Only do with alpha characters
     {
       d.push_back(std::toupper(c));
     }
   }
   
+  // Check if the string is a palindrome
   while(d.size() > 1)
   {
     if (d.front() == d.back())
