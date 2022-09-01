@@ -7,9 +7,10 @@
 
 class Person 
 {
-friend std::ostream &operator<< (std::ostream &out, const Person &rhs);
-
 private:
+  // For overloading "<<" operator
+  friend std::ostream &operator<< (std::ostream &out, const Person &rhs);
+
   std::string name;
   int age;
 public:
@@ -79,7 +80,7 @@ void display_container(const T &container) {
 
 void test1() 
 {
-  std::cout << "\nTest1 - display_vector =========================" << std::endl;
+  std::cout << "\nTest1 - display_vector() =========================" << std::endl;
 
   std::vector<int> vec {1,2,3,4,5};
   display_vector_for_each(vec);
@@ -147,7 +148,7 @@ void test4()
   stooges.push_back(Person{"Moe", 25});   // Use move() semantics
   display_vector(stooges);
   
-  stooges.emplace_back("Curly", 30);      // Use emplace_back!!!
+  stooges.emplace_back("Curly", 30);      // Use emplace_back for objects!!!
   display_vector(stooges);
 }
 
@@ -155,10 +156,11 @@ void test5()
 {
   std::cout << "\nTest5 - .front() =====================" << std::endl;
 
-  std::vector<Person> stooges {
-      {"Larry", 18},
-      {"Moe", 25},
-      {"Curly", 30}
+  std::vector<Person> stooges 
+  {
+    {"Larry", 18},
+    {"Moe", 25},
+    {"Curly", 30}
   };
   
   display_vector(stooges);
@@ -236,13 +238,13 @@ void test7()
   std::vector<int> vec1 {1,2,3,4,5};
   std::vector<int> vec2 {10,20,30,40,50};
   
-  display_vector(vec1);
-  display_vector(vec2);
+  display_vector(vec1); // [ 1 2 3 4 5 ]
+  display_vector(vec2); // [ 10 20 30 40 50 ]
   std::cout << std::endl;
 
   vec2.swap(vec1);
-  display_vector(vec1);
-  display_vector(vec2);
+  display_vector(vec1); // [ 10 20 30 40 50 ]
+  display_vector(vec2); // [ 1 2 3 4 5 ]
 }
 
 void test8() 
@@ -305,13 +307,19 @@ void test10()
   std::vector<int> vec2 {10,20,30,40,50};
   std::vector<int> vec3;
   
-  // transform over 2 ranges
-  // 1*10, 2*20, 3*30, 4*40, 5*50 and store the results in vec3
-  std::transform(vec1.begin(), vec1.end(), vec2.begin(),
-      std::back_inserter(vec3),
-      [](int x, int y) { return x * y;});
+  // transform over 2 ranges and store the results in vec3
+  // 1*10, 2*20, 3*30, 4*40, 5*50 
+  std::transform(vec1.cbegin(), vec1.cend(), vec2.cbegin(),
+    std::back_inserter(vec3), [](int x, int y) { return x * y; });
       
-  display_vector(vec3);
+  display_vector(vec3); // [ 10 40 90 160 250 ]
+
+  std::vector<int> vec4 (vec1.size(), 0);
+
+  std::transform(vec1.cbegin(), vec1.cend(), vec2.cbegin(),
+    vec4.begin(), [](int x, int y) { return 2 * x * y; });
+
+  display_vector(vec4);  // [ 20 80 180 320 500 ]
     
 }
 
@@ -324,7 +332,6 @@ void test11() {
   std::vector<int> vec2 {100,200,300,400};
   display_vector(vec1);
   display_vector(vec2);
-  std::cout << std::endl;
 
   // Option 1: Find the position in vec1 where vec2 is going to be inserted
   auto it = std::find(vec1.begin(), vec1.end(), 5);
