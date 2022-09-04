@@ -141,31 +141,33 @@ void test4()
     
 }
 
-void test5() {
-    std::cout << "\nTest5 =========================" << std::endl;
+void test5() 
+{
+  std::cout << "\nTest5 - .emplace_back() =========================" << std::endl;
 
-    std::list<Person>  stooges {
-        {"Larry", 18},
-        {"Moe", 25},
-        {"Curly", 17}
-    };
-    
-    display(stooges);
-    std::string name;
-    int age{};
-    std::cout << "\nEnter the name of the next stooge: ";
-    getline(std::cin, name);
-    std::cout << "Enter their age: ";
-    std::cin >> age;
-    
-    stooges.emplace_back(name, age);
-    display(stooges);
-    
-    // Insert Frank before Moe
-    auto it = std::find(stooges.begin(), stooges.end(), Person{"Moe", 25});
-    if (it != stooges.end())
-        stooges.emplace(it, "Frank", 18);
-    display(stooges);    
+  std::list<Person>  stooges 
+  {
+    {"Larry", 18},
+    {"Moe", 25},
+    {"Curly", 17}
+  };
+  
+  display(stooges);
+  std::string name;
+  int age{};
+  std::cout << "\nEnter the name of the next stooge: ";
+  getline(std::cin, name);
+  std::cout << "Enter their age: ";
+  std::cin >> age;
+  
+  stooges.emplace_back(name, age);
+  display(stooges);
+  
+  // Insert Frank before Moe
+  auto it = std::find(stooges.begin(), stooges.end(), Person{"Moe", 25});
+  if (it != stooges.end())
+      stooges.emplace(it, "Frank", 18);
+  display(stooges);    
 }
 
 void test6() {
