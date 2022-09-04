@@ -62,20 +62,22 @@ void display_vector_for_each(const std::vector<T> &vec)
 
 // template function to display a vector of any type
 template <typename T>
-void display_vector(const std::vector<T> &vec) {
-    std::cout << "[ ";
-    for (const auto &elem: vec)
-        std::cout << elem << " ";
-    std::cout <<  "]"<< std::endl;
+void display_vector(const std::vector<T> &vec) 
+{
+  std::cout << "[ ";
+  for (const auto &elem: vec)
+      std::cout << elem << " ";
+  std::cout <<  "]"<< std::endl;
 }
 
 // template function to display_vector any container
 template <typename T>
-void display_container(const T &container) {
-    std::cout << "[ ";
-    for (const auto &elem: container)
-        std::cout << elem << " ";
-    std::cout <<  "]"<< std::endl;
+void display_container(const T &container) 
+{
+  std::cout << "[ ";
+  for (const auto &elem: container)
+      std::cout << elem << " ";
+  std::cout <<  "]"<< std::endl;
 }
 
 void test1() 
@@ -271,7 +273,7 @@ void test9()
   // There is also a front_inserter we can use with deques and lists
   // Copy one list to another using an iterator and back_inserter
   
-  std::cout << "\nTest9 - std::copy() std::copy_if() std::front/back_inserter()==========" << std::endl;
+  std::cout << "\nTest9 - std::copy() std::copy_if() std::back_inserter()==========" << std::endl;
   
   std::vector<int> vec1 {1,2,3,4,5};   
   std::vector<int> vec2 {10,20};
@@ -327,13 +329,13 @@ void test11() {
   // Insertion from another vector
   // Insert vec2 into vec1 before the 5
 
-  std::cout << "\nTest11 - .insert() =========================" << std::endl;
+  std::cout << "\nTest11 - std::find() .insert() =========================" << std::endl;
   std::vector<int> vec1 {1,2,3,4,5,6,7,8,9,10};
   std::vector<int> vec2 {100,200,300,400};
   display_vector(vec1);
   display_vector(vec2);
 
-  // Option 1: Find the position in vec1 where vec2 is going to be inserted
+  // Option 1: Find the position in vec1 where vec2 is going to be inserted BEFORE
   auto it = std::find(vec1.begin(), vec1.end(), 5);
 
   // Option 2: Define the desired position in the vector
