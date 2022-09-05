@@ -160,40 +160,46 @@ void test5()
   std::cout << "Enter their age: ";
   std::cin >> age;
   
+  // Insert a person at the back
   stooges.emplace_back(name, age);
   display(stooges);
   
-  // Insert Frank before Moe
+  // Insert a person before Moe
   auto it = std::find(stooges.begin(), stooges.end(), Person{"Moe", 25});
   if (it != stooges.end())
-      stooges.emplace(it, "Frank", 18);
+  {
+    stooges.emplace(it, "Frank", 18);
+  }
   display(stooges);    
 }
 
-void test6() {
-    std::cout << "\nTest6 =========================" << std::endl;
-    
-    std::list<Person>  stooges {
-        {"Larry", 18},
-        {"Moe", 25},
-        {"Curly", 17}
-    };
-    
-    display(stooges);
-    stooges.sort();
-    display(stooges);
+void test6() 
+{
+  std::cout << "\nTest6 - .sort() =========================" << std::endl;
+  
+  std::list<Person>  stooges 
+  {
+    {"Larry", 18},
+    {"Moe", 25},
+    {"Curly", 17}
+  };
+  
+  display(stooges);
+  stooges.sort();
+  display(stooges);
 }
 
 
-int main() {
-    
-    test1();
-    test2();
-    test3();
-    test4();
-    test5();
-    test6();
-    std::cout << std::endl;
-    return 0;
+int main() 
+{
+  test1();
+  test2();
+  test3();
+  test4();
+  test5();
+  test6();
+  std::cout << std::endl;
+  
+  return 0;
 }
 
