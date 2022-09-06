@@ -24,20 +24,20 @@ public:
     : name{name}, age{age} 
     {}
 
-  // Overload "<" operator
+  // Overload less "<" operator
   bool operator<(const Person &rhs) const 
   {
     return this->age < rhs.age;
   }
 
-  // Overload "==" operator
+  // Overload equal "==" operator
   bool operator==(const Person &rhs) const 
   {
     return (this->name == rhs.name && this->age == rhs.age);
   }
 };
 
-// Friend function For overloading "<<" operator
+// Friend function for overloading "<<" operator
 std::ostream &operator<<(std::ostream &os, const Person &p) 
 {
   os << p.name << ":" << p.age;
@@ -106,7 +106,7 @@ void test3()
   display(l); // [ 1 2 3 4 5 0 0 0 0 0 ]
   
   std::list<Person> persons;
-  persons.resize(5);  // It use the Person default constructor
+  persons.resize(5);  // It uses the Person's default constructor
   display(persons); // [ unknown:0 ... unknown:0 ]
     
 }
@@ -199,7 +199,7 @@ int main()
   test5();
   test6();
   std::cout << std::endl;
-  
+
   return 0;
 }
 
