@@ -98,21 +98,21 @@ void test2()
       {"Moe", 2},
       {"Curly", 3}
   };
-  display(stooges); // Note the order of display!  due to the operator "<"
+  display(stooges); // [ Larry:1 Moe:2 Curly:3 ]
+                    // Note the order of display!  due to the operator "<"
 
   stooges.emplace("James", 50);   
-  display(stooges);
+  display(stooges); // [ Larry:1 Moe:2 Curly:3 James:50 ]
 
   stooges.emplace("Frank", 50); // NO -- 50 already exists
-  display(stooges);
+  display(stooges); // [ Larry:1 Moe:2 Curly:3 James:50 ]
   
   auto it = stooges.find(Person{"Moe", 2});
   if (it != stooges.end())
   {
     stooges.erase(it);
   }
-  
-  display(stooges);
+  display(stooges); // [ Larry:1 Curly:3 James:50 ]
   
   it = stooges.find(Person("XXXX", 50));     // Will remove James!!!!
                                              // using the  operator "<"
@@ -120,12 +120,12 @@ void test2()
   {
     stooges.erase(it);
   }
-  display(stooges); 
+  display(stooges); // [Larry:1 Curly:3 ]
 }
 
 void test3() 
 {
-  std::cout << "\nTest3 =========================" << std::endl;
+  std::cout << "\nTest3 .insert() =========================" << std::endl;
   
   std::set<std::string> s {"A", "B", "C"};
   display(s);
@@ -152,7 +152,7 @@ int main()
   test1();
   test2();
   test3();
-  
+
   return 0;
 }
 
