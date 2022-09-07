@@ -5,6 +5,56 @@
 #include <map>
 #include <set>
 
+class Person 
+{
+private:
+  // For overloading "<<" operator
+  friend std::ostream& operator<<(std::ostream &os, const Person &p);
+
+  std::string name;
+  int age;
+public:
+  // Default constructor
+  Person() 
+    : name{"Unknown"}, age{0} 
+    {}
+
+  // Overload constructor
+  Person(std::string name, int age) 
+    : name{name}, age{age} 
+    {}
+
+  // Overload less "<" operator
+  // Sets uses it to check for the duplicate elements
+  bool operator<(const Person &rhs) const 
+  {
+    return this->age < rhs.age;
+  }
+
+  // Overload equal "==" operator
+  bool operator==(const Person &rhs) const 
+  {
+    return (this->name == rhs.name && this->age == rhs.age);
+  }
+};
+
+// Friend function for overloading "<<" operator
+std::ostream &operator<<(std::ostream &os, const Person &p) 
+{
+  os << p.name << ":" << p.age;
+  return os;
+}
+
+template <typename T1, typename T2>
+void display(const std::map<T1, T2> &m) 
+{
+  std::cout << "[ ";
+  for (const auto &elem: m) 
+  {
+    std::cout << elem.first << ":" << elem.second << " ";
+  }
+  std::cout << "]  " << std::endl;
+}
 
 void display(const std::map<std::string, std::set<int>> &m) 
 {
@@ -17,17 +67,6 @@ void display(const std::map<std::string, std::set<int>> &m)
       std::cout << set_elem <<  " ";
     }
     std::cout << "] " ;
-  }
-  std::cout << "]  " << std::endl;
-}
-
-template <typename T1, typename T2>
-void display(const std::map<T1, T2> &m) 
-{
-  std::cout << "[ ";
-  for (const auto &elem: m) 
-  {
-    std::cout << elem.first << ":" << elem.second << " ";
   }
   std::cout << "]  " << std::endl;
 }
@@ -82,7 +121,7 @@ void test1()
 
 void test2() 
 {
-  std::cout << "\nTest2 =========================" << std::endl;
+  std::cout << "\nTest2 - map of <std::string,std::set<int>> =========================" << std::endl;
   
   // A map of string as a key an a set of ints as a values
   std::map<std::string, std::set<int>> grades  
@@ -104,10 +143,30 @@ void test2()
   display(grades);  // [ Curly: [ 80 90 100 ] Larry: [ 90 95 100] Moe: [ 94 1000 ] ] 
 }
 
+void test3()
+{
+  std::cout << "\nTest3 - map of <int,std::set<Person>> =========================" << std::endl;
+  // A map of string as a key and a Person as a value
+  std::map<std::string, Person> stooges 
+  {
+    {"stooge 1", {"Moe", 39} },
+    {"stooge 2", {"Larry", 35} },
+    {"stooge 3", {"Curly", 43} }
+  };
+  display(stooges); // [ stooge 1:Moe:39 stooge 2:Larry:35 stooge 3:Curly:43 ]
+
+  stooges.insert(std::pair<std::string, Person>("stooge 4", {"Shemp", 50}));
+  display(stooges); // [ stooge 1:Moe:39 stooge 2:Larry:35 stooge 3:Curly:43 stooge 4:Shemp:50 ]
+
+  stooges.erase("stooge 3");
+  display(stooges); // [ stooge 1:Moe:39 stooge 2:Larry:35 stooge 4:Shemp:50 ]
+}
+
 int main() 
 {
   test1();
   test2();
+  test3();
   return 0;
 }
 
