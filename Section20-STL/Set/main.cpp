@@ -94,9 +94,9 @@ void test2()
   
   std::set<Person> stooges 
   {
-      {"Larry", 1},
-      {"Moe", 2},
-      {"Curly", 3}
+    {"Larry", 1},
+    {"Moe", 2},
+    {"Curly", 3}
   };
   display(stooges); // [ Larry:1 Moe:2 Curly:3 ]
                     // Note the order of display!  due to the operator "<"
