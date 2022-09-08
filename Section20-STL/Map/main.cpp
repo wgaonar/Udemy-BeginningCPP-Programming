@@ -74,7 +74,7 @@ void display(const std::map<std::string, std::set<int>> &m)
 void test1() 
 {
   // Maps
-  std::cout << "\nTest1 =========================" << std::endl;
+  std::cout << "\nTest1 - std::pair<>() std::make_pair() =======" << std::endl;
   std::map<std::string, int> m 
   {
     {"Larry", 3},
@@ -158,8 +158,26 @@ void test3()
   stooges.insert(std::pair<std::string, Person>("stooge 4", {"Shemp", 50}));
   display(stooges); // [ stooge 1:Moe:39 stooge 2:Larry:35 stooge 3:Curly:43 stooge 4:Shemp:50 ]
 
-  stooges.erase("stooge 3");
-  display(stooges); // [ stooge 1:Moe:39 stooge 2:Larry:35 stooge 4:Shemp:50 ]
+  stooges.insert(std::make_pair("stooge 5", Person{"Wilmer", 15}));
+  display(stooges); // [ stooge 1:Moe:39 stooge 2:Larry:35 stooge 3:Curly:43 stooge 4:Shemp:50 stooge 5:Wilmer:15 ] 
+
+  auto it = stooges.find("stooge 3");
+  if (it != stooges.cend())
+  { 
+    // Erase using the key 
+    stooges.erase("stooge 3");
+  }
+  display(stooges); // [ stooge 1:Moe:39 stooge 2:Larry:35 stooge 4:Shemp:50 stooge 5:Wilmer:15 ]
+
+  it = stooges.find("stooge 5");
+  if (it != stooges.cend())
+  { 
+    // Erase using an iterator that points to an element or elements in multimap 
+    stooges.erase(it);
+  }
+  display(stooges); // [ stooge 1:Moe:39 stooge 2:Larry:35 stooge 4:Shemp:50 ] 
+
+
 }
 
 int main() 
