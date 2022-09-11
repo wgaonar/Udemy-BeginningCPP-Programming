@@ -176,8 +176,6 @@ void test3()
     stooges.erase(it);
   }
   display(stooges); // [ stooge 1:Moe:39 stooge 2:Larry:35 stooge 4:Shemp:50 ] 
-
-
 }
 
 int main() 
