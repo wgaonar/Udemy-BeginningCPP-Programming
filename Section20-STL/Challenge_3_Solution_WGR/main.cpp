@@ -72,7 +72,8 @@ std::string clean_string(const std::string &s)
 void part1() 
 {
   std::map<std::string, int> words;     
-  std::string word;   
+  std::string word;
+  std::string clean_word;   
   std::ifstream in_file {"./words.txt"};
 
   // Check if the file was open correctly
@@ -88,15 +89,17 @@ void part1()
       // Read each word in the file
       in_file >> word;
 
+      clean_word = clean_string(word);
+
       // If the word is not in the map -> insert it
-      if (words.count(word) == 0)
+      if (words.count(clean_word) == 0)
       {
-        words.insert(std::make_pair(word,1));
+        words.insert(std::make_pair(clean_word,1));
       }
       // If the word is in the map -> increase the frequency
       else
       {
-        words.at(word) += 1;
+        words.at(clean_word) += 1;
       }
     }
     in_file.close();
@@ -110,6 +113,7 @@ void part2() {
     std::map<std::string, std::set<int>> words;
     std::string line;
     std::string word;
+    std::string clean_word;
     int line_counter{1};
     std::ifstream in_file {"./words.txt"};
 
@@ -129,15 +133,17 @@ void part2() {
       // Traverse through all words in the line
       while (ss >> word)
       {
+        clean_word = clean_string(word);
+
         // If the word is not in the map -> insert it
-        if (words.count(word) == 0)
+        if (words.count(clean_word) == 0)
         {
-          words.insert(std::make_pair(word,std::set<int>{line_counter}));
+          words.insert(std::make_pair(clean_word,std::set<int>{line_counter}));
         }
         // If the word is in the map -> insert in the set the new line number
         else
         {
-          words.at(word).insert(line_counter);
+          words.at(clean_word).insert(line_counter);
         }
       }
       line_counter++;
