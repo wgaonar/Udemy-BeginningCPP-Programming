@@ -1,7 +1,7 @@
 // Section 20
 // Stack
 #include <iostream>
-#include <stack>   // A LIFO structure
+#include <stack>   // A LIFO data structure which access elements at the back only
 #include <vector>
 #include <list>
 
