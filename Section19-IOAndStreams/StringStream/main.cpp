@@ -1,8 +1,7 @@
 // Section 19
-// stringstreams for split a line and validation data
 #include <iostream>
 #include <iomanip>
-#include <sstream>
+#include <sstream> // For split a line and validation data
 #include <string>
 #include <limits>
 
@@ -15,7 +14,7 @@ int main()
   std::string info {"Moe 100 1234.5"};
   std::istringstream iss {info};
   
-  iss >> name  >> num >>  total;
+  iss >> name  >> num >> total;
   std::cout << std::setw(10) << std::left << name  
                   << std::setw(5) << num
                   << std::setw(10) << total << std::endl;
