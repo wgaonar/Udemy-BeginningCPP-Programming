@@ -99,7 +99,7 @@ void part1()
       // If the word is in the map -> increase the frequency
       else
       {
-        words.at(clean_word) += 1;
+        words.at(clean_word) ++;
       }
     }
     in_file.close();

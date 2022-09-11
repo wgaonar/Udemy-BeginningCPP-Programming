@@ -10,7 +10,7 @@
 
 bool is_palindrome(const std::string& s)
 {
-  // Push the string characters to the deque
+  // Push the string characters to a deque
   std::deque<char> d;
   for (const char& c: s)
   {
