@@ -1,7 +1,7 @@
 // Section 20
 // Stack
 #include <iostream>
-#include <stack>
+#include <stack>   // A LIFO structure
 #include <vector>
 #include <list>
 
