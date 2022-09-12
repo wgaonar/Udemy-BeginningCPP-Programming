@@ -30,7 +30,7 @@ bool is_palindrome(const std::string& s)
     
     // while the queue is not empty
     //      compare and remove the character at the top of the stack 
-    //      and the chacterter at the front of the queue
+    //      and the character at the front of the queue
     //      if they are not the same - return false since it can't be a palindrome
     // if you complete the loop then the string must be a palindrome so return true
     while(!q.empty()) {
