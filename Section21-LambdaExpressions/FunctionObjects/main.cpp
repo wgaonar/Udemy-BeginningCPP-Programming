@@ -45,13 +45,15 @@ void test1()
   std::cout << "\nTest1 =================" << std::endl;
 
   Square_Functor square;
-  square(4);      // square.operator()(4)     displays 16
+  square(4);  // square.operator()(4)   displays 16
   
   Displayer<int> d1;
-  d1(100);                // displays 100
+  d1(100);  // displays 100
+  d1.operator()(50); // displays 50
 
   Displayer<std::string> d2;
   d2("Frank");          // displays Frank
+  std::cout << std::endl;
 }
 
 void test2()
@@ -59,24 +61,27 @@ void test2()
   std::cout << "\nTest2 =================" << std::endl;
 
   Square_Functor square;
-
   std::vector<int> vec1 {1,2,3,4,5};
   std::vector<std::string> vec2 {"Larry", "Moe", "Curly"};
   
   std::for_each(vec1.begin(), vec1.end(), square);  // 1 4 9 16 25
   std::cout << std::endl;
   
+  // Instantiate a display of ints anonymously
   std::for_each(vec1.begin(), vec1.end(), Displayer<int>());  // 1 2 3 4 5
   std::cout << std::endl;
   
+  // Instantiate a display of ints with the struct template Displayer 
   Displayer<int> d1;
   std::for_each(vec1.begin(), vec1.end(), d1);  // 1 2 3 4 5
   std::cout << std::endl;
   
-  Displayer<std::string> d2;
+  // Instantiate a display of strings anonymously
   std::for_each(vec2.begin(), vec2.end(), Displayer<std::string>()); // Larry Moe Curly
   std::cout << std::endl;
   
+  // Instantiate a display of strings with the struct template Displayer 
+  Displayer<std::string> d2;
   std::for_each(vec2.begin(), vec2.end(), d2);    // Larry Moe Curly
   std::cout << std::endl;
 }
