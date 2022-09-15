@@ -15,14 +15,10 @@ private:
   int age;
 public:
   // Default constructor
-  Person() 
-    : name{"Unknown"}, age{0} 
-    {}
+  Person() : name{"Unknown"}, age{0} {}
 
   // Overload constructor
-  Person(std::string name, int age) 
-    : name{name}, age{age} 
-    {}
+  Person(std::string name, int age) : name{name}, age{age} {}
 
   // Overload less "<" operator
   // Sets uses it to check for the duplicate elements
