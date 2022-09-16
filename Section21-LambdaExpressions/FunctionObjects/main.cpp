@@ -42,23 +42,23 @@ public:
 
 void test1()
 {
-  std::cout << "\nTest1 =================" << std::endl;
+  std::cout << "\nTest1 .operator()(<data>)=================" << std::endl;
 
   Square_Functor square;
   square(4);  // square.operator()(4)   displays 16
   
   Displayer<int> d1;
   d1(100);  // displays 100
-  d1.operator()(50); // displays 50
+  d1.operator()(50); // displays 50 using .operator()(int) explicitly
 
   Displayer<std::string> d2;
-  d2("Frank");          // displays Frank
+  d2("Frank"); // displays Frank
   std::cout << std::endl;
 }
 
 void test2()
 {
-  std::cout << "\nTest2 =================" << std::endl;
+  std::cout << "\nTest2 - std::for_each()=================" << std::endl;
 
   Square_Functor square;
   std::vector<int> vec1 {1,2,3,4,5};
@@ -88,7 +88,7 @@ void test2()
 
 void test3()
 {
-  std::cout << "\nTest3 =================" << std::endl;
+  std::cout << "\nTest3 - Lambda=================" << std::endl;
 
   std::vector<int> vec1 {1,2,3,4,5};
   std::vector<std::string> vec2 {"Larry", "Moe", "Curly"};
@@ -108,7 +108,7 @@ void test3()
 
 void test4()
 {
-  std::cout << "\nTest4 =================" << std::endl;
+  std::cout << "\nTest4 Lambda vs Functor=================" << std::endl;
 
   Multiplier mult(100);
   std::vector<int> vec1 {1,2,3,4};
