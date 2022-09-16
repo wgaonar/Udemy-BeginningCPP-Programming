@@ -2,6 +2,7 @@
 // Macros
 #include <iostream>
 
+// Functions replaced by macros
 //int min(int a, int b) {
 //    return (a < b) ? a : b;
 //}
@@ -17,14 +18,14 @@
 #define min(a, b)  (((a)<(b)) ? (a) : (b))
 
 #define max(a,b) ((a>b) ? a : b)
-int main() {
+int main() 
+{
+  std::cout << min(2,3) << std::endl;
+  std::cout << min('A', 'B') << std::endl;
+  std::cout << min(12.5, 9.2) << std::endl;
+  std::cout << min(5+2*2, 7+40) << std::endl;
 
-    std::cout << min(2,3) << std::endl;
-    std::cout << min('A', 'B') << std::endl;
-    std::cout << min(12.5, 9.2) << std::endl;
-    std::cout << min(5+2*2, 7+40) << std::endl;
-
-    std::cout << max(10,20) << std::endl;
-    return 0;
+  std::cout << max(10,20) << std::endl;
+  return 0;
 }
 
