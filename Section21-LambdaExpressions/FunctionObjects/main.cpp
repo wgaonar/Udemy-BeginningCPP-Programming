@@ -111,17 +111,18 @@ void test4()
   std::cout << "\nTest4 Lambda vs Functor=================" << std::endl;
 
   std::vector<int> vec1 {1,2,3,4};
-  Displayer<int> d1;
 
   // Using an anonymously function object to transform the vector. Transform changes the vector!
   std::transform(vec1.begin(), vec1.end(), vec1.begin(), Multiplier(1000));   
-  std::for_each(vec1.begin(), vec1.end(),  d1);                           // 1000 2000 3000 4000
+  std::for_each(vec1.begin(), vec1.end(),  Displayer<int>()); // 1000 2000 3000 4000
   std::cout << std::endl;
 
   // Using a function object to transform the vector. Transform changes the vector!
+  vec1 = {1,2,3,4};
   Multiplier mult(100);
+  Displayer<int> d1;
   std::transform(vec1.begin(), vec1.end(), vec1.begin(), mult);   
-  std::for_each(vec1.begin(), vec1.end(),  d1);                           // 100 200 300 400
+  std::for_each(vec1.begin(), vec1.end(),  d1); // 100 200 300 400
   std::cout << std::endl;
 
   vec1 = {1,2,3,4};
