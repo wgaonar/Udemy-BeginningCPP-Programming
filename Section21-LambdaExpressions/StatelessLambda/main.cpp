@@ -43,7 +43,7 @@ std::ostream &operator<<(std::ostream &os, const Person &rhs)
 
 void test1() 
 {
-  std::cout << "\n---Test1 lambda expressions-----------------" << std::endl;
+  std::cout << "\n---Test1 lambda executions -----------------" << std::endl;
 
   [] () {std::cout << "Hi" << std::endl; }(); // "Hi"
   
@@ -53,53 +53,66 @@ void test1()
 }
 
 // Using values and references as lambda parameters 
-void test2() {
-    std::cout << "\n---Test2 --------------------------" << std::endl;
-    
-    auto l1 =   [] () {std::cout << "Hi" << std::endl;};
-    l1();
-    
-    int num1 {100};
-    int num2 {100};
+void test2() 
+{
+  std::cout << "\n---Test2 parameters with values and references -----------" << std::endl;
+  
+  auto l1 = [] () {std::cout << "Hi" << std::endl;};
+  l1(); // "Hi"
+  
+  // Use the input parameters passed by value
+  int num1 {100};
+  int num2 {200};
+  auto l2 = [](int x, int y) {std::cout << x+y << std::endl;};
+  l2(10,20);  // 30
+  l2(num1, num2); // 300
+  
+  // Modify the input parameters passed by reference
+  auto l3 = [](int &x, int y) 
+  {
+    std::cout << "x: " << x << " y: " << y << std::endl; // x:100 y:200
+    x = 1000;
+    y = 2000;
+  };
+  l3(num1, num2);
+  std::cout << "num1: " << num1 << " num2: " << num2 << std::endl; // num1:1000 num2:2000
 
-    auto l2 = [](int x, int y) { std::cout << x+y << std::endl; };
-    l2(10,20);
-    l2(num1, num2);
-    
-    auto l3 = [](int &x, int y) {
-        std::cout << "x: " << x << " y: " << y << std::endl;
-        x = 1000;
-        y = 2000;
-    };
-    
-    l3(num1, num2);
-    std::cout << "num1: " << num1 << " num2: " << num2 << std::endl;
+  // Check if a number is even or odd
+  auto l4 = [] (auto x) {return x % 2 == 0;};
+  num1 = 5;
+  if(l4(num1))
+  {
+    std::cout << num1 << " is even\n";
+  }
+  else
+  {
+    std::cout << num1 << " is odd\n";
+  }
 }
 
 // Using value and reference objects as lambda parameters
-void test3() {
-    std::cout << "\n---Test3 --------------------------" << std::endl;
-    Person stooge {"Larry", 18};
-    std::cout << stooge << std::endl;
-    
-    auto l4 = [] (Person p) {
-        std::cout << p << std::endl; 
-    };
-    l4(stooge);
-    
-    auto l5 = [] (const Person &p) {
-        std::cout << p << std::endl; 
-    };
-    l5(stooge);
-    
-    auto l6 = [] (Person &p) {
-        p.set_name("Frank");
-        p.set_age(25);
-        std::cout << p << std::endl; 
-    };
-    l6(stooge);
-    
-    std::cout << stooge << std::endl;
+void test3() 
+{
+  std::cout << "\n---Test3 objects as parameters--------------------------" << std::endl;
+
+  Person stooge {"Larry", 18};
+  std::cout << stooge << std::endl;
+  
+  auto l1 = [] (Person p)  { std::cout << p << std::endl;};
+  l1(stooge);
+  
+  auto l2 = [] (const Person &p) { std::cout << p << std::endl;};
+  l2(stooge);
+  
+  auto l3 = [] (Person &p) 
+  {
+    p.set_name("Frank");
+    p.set_age(25);
+    std::cout << p << std::endl; 
+  };
+  l3(stooge);
+  
+  std::cout << stooge << std::endl;
     
 }
 
@@ -187,14 +200,14 @@ void test7() {
 
 int main()
 {
-    test1();
-    test2();
-    test3();
-    test4();
-    test5();
-    test6();
-	test7();
+  test1();
+  test2();
+  test3();
+  // test4();
+  // test5();
+  // test6();
+	// test7();
     
-    std::cout << std::endl;
+  std::cout << std::endl;
 	return 0;
 }
