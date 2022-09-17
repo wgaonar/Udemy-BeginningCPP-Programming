@@ -7,34 +7,49 @@
 #include <functional>   // for std::function
 #include <algorithm>
 
-class Person {
-    friend std::ostream &operator<<(std::ostream &os, const Person &rhs);
+class Person 
+{
+  // Friend functions to overload insertion operator "<<"
+  friend std::ostream &operator<<(std::ostream &os, const Person &rhs);
+
 private:
-    std::string name;
-    int age;
+  std::string name;
+  int age;
+
 public:
-    Person(std::string name, int age) : name{name}, age{age} {};
-    Person(const Person &p): name{p.name}, age{p.age} { }
-    ~Person() = default;
-    std::string get_name() const { return name; }
-    void set_name(std::string name) {this->name = name; };
-    int get_age() const {return age; }
-    void set_age(int age) {this->age = age; }
+  // Overload constructor
+  Person(std::string name, int age) : name{name}, age{age} {};
+
+  // Overload constructor with the same class object
+  Person(const Person &p): name{p.name}, age{p.age} { }
+
+  // Force a compile to generate the destructor
+  ~Person() = default;
+
+  // Getters
+  std::string get_name() const { return name; }
+  int get_age() const {return age; }
+
+  // Mutators
+  void set_name(std::string name) {this->name = name; };
+  void set_age(int age) {this->age = age; }
 };
 
-std::ostream &operator<<(std::ostream &os, const Person &rhs) {
-    os << "[Person: " <<rhs.name << " : " <<rhs.age << "]";
-    return os;
+std::ostream &operator<<(std::ostream &os, const Person &rhs) 
+{
+  os << "[Person: " <<rhs.name << " : " <<rhs.age << "]";
+  return os;
 }
 
-void test1() {
-    std::cout << "\n---Test1 --------------------------" << std::endl;
+void test1() 
+{
+  std::cout << "\n---Test1 lambda expressions-----------------" << std::endl;
 
-    [] () {std::cout << "Hi" << std::endl; }();
-    
-    [] (int x) { std::cout << x << std::endl;}(100);
-    
-    [](int x, int y) { std::cout << x+y << std::endl; }(100,200);
+  [] () {std::cout << "Hi" << std::endl; }(); // "Hi"
+  
+  [] (int x) { std::cout << x << std::endl;}(100);  // 100
+  
+  [](int x, int y) { std::cout << x+y << std::endl; }(100,200); // 300
 }
 
 // Using values and references as lambda parameters 
