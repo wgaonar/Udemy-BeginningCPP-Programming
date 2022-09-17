@@ -48,10 +48,10 @@ public:
 int main() 
 {
   std::cout << "\n === Pointers ==== " << std::endl;
-  Account *p1 = new Account();
-  Account *p2 = new Savings();
-  Account *p3 = new Checking();
-  Account *p4 = new Trust();
+  Account *p1 = new Account(); // displays "In Account::withdraw"
+  Account *p2 = new Savings();  // displays "In Savings::withdraw"
+  Account *p3 = new Checking(); // displays "In Checking::withdraw"
+  Account *p4 = new Trust(); // displays "In Trust::withdraw"
   
   p1->withdraw(1000);
   p2->withdraw(1000);
