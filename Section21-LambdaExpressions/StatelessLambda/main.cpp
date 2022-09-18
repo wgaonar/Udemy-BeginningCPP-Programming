@@ -30,7 +30,7 @@ public:
   std::string get_name() const { return name; }
   int get_age() const {return age; }
 
-  // Mutators
+  // Setters
   void set_name(std::string name) {this->name = name; };
   void set_age(int age) {this->age = age; }
 };
@@ -45,10 +45,13 @@ void test1()
 {
   std::cout << "\n---Test1 lambda executions -----------------" << std::endl;
 
+  // No parameters and instantiate with () at the end of the lambda expression
   [] () {std::cout << "Hi" << std::endl; }(); // "Hi"
   
+  // One int parameter and instantiate with () at the end of the lambda expression
   [] (int x) { std::cout << x << std::endl;}(100);  // 100
   
+  // Tow ints parameter and instantiate with () at the end of the lambda expression
   [](int x, int y) { std::cout << x+y << std::endl; }(100,200); // 300
 }
 
@@ -61,21 +64,22 @@ void test2()
   l1(); // "Hi"
   
   // Use the input parameters passed by value
-  int num1 {100};
-  int num2 {200};
   auto l2 = [](int x, int y) {std::cout << x+y << std::endl;};
   l2(10,20);  // 30
+  
+  int num1 {100};
+  int num2 {200};
   l2(num1, num2); // 300
   
-  // Modify the input parameters passed by reference
+  // Modify the input parameters by passing one by reference
   auto l3 = [](int &x, int y) 
   {
-    std::cout << "x: " << x << " y: " << y << std::endl; // x:100 y:200
+    std::cout << "local variables " << "x: " << x << " y: " << y << std::endl; // x:100 y:200
     x = 1000;
     y = 2000;
   };
   l3(num1, num2);
-  std::cout << "num1: " << num1 << " num2: " << num2 << std::endl; // num1:1000 num2:2000
+  std::cout << "Only change num1 - " << "num1: " << num1 << " num2: " << num2 << std::endl; // num1:1000 num2:200
 
   // Check if a number is even or odd
   auto l4 = [] (auto x) {return x % 2 == 0;};
