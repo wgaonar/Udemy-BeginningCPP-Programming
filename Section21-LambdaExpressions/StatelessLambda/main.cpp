@@ -102,12 +102,15 @@ void test3()
   Person stooge {"Larry", 18};
   std::cout << stooge << std::endl;
   
+  // Pass an object by value -> It uses copy constructor
   auto l1 = [] (Person p)  { std::cout << p << std::endl;};
   l1(stooge);
   
+  // Pass a const object by reference -> An alias to object
   auto l2 = [] (const Person &p) { std::cout << p << std::endl;};
   l2(stooge);
   
+  // Pass an object by reference and modify it
   auto l3 = [] (Person &p) 
   {
     p.set_name("Frank");
@@ -124,39 +127,50 @@ void test3()
 // using std::function as a parameter in C++14 and greater
 // or 
 // auto as parameter type in C++20
-void filter_vector(const std::vector<int> &vec, std::function<bool(int)> func)   {
-//void filter_vector (const std::vector<int>  &vec, auto func) {
-    std::cout <<"[ ";
-    for (int i: vec) {
-        if (func(i)) 
-            std::cout << i  << " ";
+void filter_vector(const std::vector<int> &vec, std::function<bool (int)> func) // function object C++14
+// void filter_vector (const std::vector<int> &vec, bool (*func) (int)) // function pointer C++14
+// void filter_vector (const std::vector<int> &vec, auto func) // C++20
+{
+  std::cout <<"[ ";
+  for (int i: vec) 
+  {
+    if (func(i))
+    { 
+      std::cout << i  << " ";
     }
-    std::cout << "]" << std::endl;
+  }
+  std::cout << "]" << std::endl;
 }
 
 // passing a lambda to a function
-void test4() {
-    std::cout << "\n---Test4 --------------------------" << std::endl;
-    std::vector<int> nums {10,20,30,40,50,60,70,80,90,100};
-    
-    filter_vector(nums, [](int x) {return x>50;});
-    
-    filter_vector(nums, [](int x) {return x<=30;});
-    
-    filter_vector(nums, [](int x) {return x>= 30 && x <=60;});
+void test4() 
+{
+  std::cout << "\n---Test4 lambda as a parameter -----------------" << std::endl;
+  std::vector<int> nums {10,20,30,40,50,60,70,80,90,100};
+  
+  // Prints the nums greater than 50
+  filter_vector(nums, [](int x) {return x>50;});
+  
+  // Prints the nums less equal than 30
+  filter_vector(nums, [](int x) {return x<=30;});
+  
+  // Prints the nums greater equal than 30 and less equal than 60
+  filter_vector(nums, [](int x) {return x>= 30 && x <=60;});
 }
 
 // used for test5
-auto make_lambda() {
+std::function<void (void)> make_lambda() // function object C++14
+// void (*make_lambda()) (void) // function pointer C++14
+// auto make_lambda() // C++20
+{
 	return [] () {std::cout << "This lambda was made using the make_lambda function!" << std::endl;};
 }
 
 // returning a lambda from a function
 void test5() {
-	std::cout << "\n---Test5 --------------------------" << std::endl;
+	std::cout << "\n---Test5 Return a lambda from a function -------------------------" << std::endl;
 	
 	auto l5 = make_lambda();
-	
 	l5();
 }
 
@@ -207,8 +221,8 @@ int main()
   test1();
   test2();
   test3();
-  // test4();
-  // test5();
+  test4();
+  test5();
   // test6();
 	// test7();
     
