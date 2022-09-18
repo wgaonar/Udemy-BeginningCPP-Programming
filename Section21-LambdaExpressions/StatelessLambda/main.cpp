@@ -20,7 +20,7 @@ public:
   // Overload constructor
   Person(std::string name, int age) : name{name}, age{age} {};
 
-  // Overload constructor with the same class object
+  // Copy constructor
   Person(const Person &p): name{p.name}, age{p.age} { }
 
   // Force a compile to generate the destructor
