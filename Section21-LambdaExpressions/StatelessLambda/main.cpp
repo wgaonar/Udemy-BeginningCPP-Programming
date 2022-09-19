@@ -208,49 +208,70 @@ void test5() {
   // Return a type from lambda with args
   auto l5_3 = make_lambda_with_args_and_return_type();
   double division = l5_3(3,5);
-  std::cout << "The returned variable: division = " << division << std::endl;
+  std::cout << "The returned variable: division = " << division << std::endl; // 0.6
 }
 
 // using auto in the lambda parameter list
-void test6() {
-    std::cout << "\n---Test6 --------------------------" << std::endl;
-    auto l6 = [](auto x, auto y) {
-        std::cout << "x: " << x << " y: " << y << std::endl;
-    };
-    
-    l6(10,20);
-    l6(100.3, 200);
-    l6(12.5, 15.54);
-    
-    l6 (Person("Larry", 18), Person("Curly", 22));
+void test6() 
+{
+  std::cout << "\n---Test6 auto as input parameter --------------------------" << std::endl;
+  auto l6 = [](auto x, auto y) {
+      std::cout << "x: " << x << " y: " << y << std::endl;
+  };
+  
+  l6(10,20);      // x: 10 y: 20
+  l6(100.3, 200); // x: 100.3 y: 200
+  l6(12.5, 15.54);  // x: 12.5 y:15.54
+  
+  l6 (Person("Larry", 18), Person("Curly", 22)); // x: [Person: Larry : 18] y: [Person: Curly : 22]
 }
 
 // Simple lambda examples with std::sort and std::for_each
-void test7() {
-      std::cout << "\n---Test7 --------------------------" << std::endl;
+void test7() 
+{
+  std::cout << "\n---Test7 std::sort std::for_each()--------------------------" << std::endl;
 
-    std::vector<Person> stooges {
-        {"Larry", 18},
-        {"Moe", 30},
-        {"Curly", 25}
-    };
-    std::sort(begin(stooges), end(stooges), [](const Person &p1, const Person &p2) {
-        return p1.get_name() < p2.get_name();
-    });
-    
-    std::for_each(begin(stooges), end(stooges), [](const Person &p) {
-        std::cout << p << std::endl;
-    });
-    
-    std::cout << std::endl;
-    
-     std::sort(begin(stooges), end(stooges), [](const Person &p1, const Person &p2) {
-        return p1.get_age()< p2.get_age();
-    });
-    
-    std::for_each(begin(stooges), end(stooges), [](const Person &p) {
-        std::cout << p << std::endl;
-    });
+  std::vector<Person> stooges 
+  {
+    {"Larry", 18},
+    {"Moe", 30},
+    {"Curly", 25}
+  };
+
+  // Sort and print by name
+  std::sort
+  (
+    begin(stooges), // Where to start, equivalent to stooges.begin()
+    end(stooges),   // Where to end
+    [](const Person &p1, const Person &p2) 
+    {
+      return p1.get_name() < p2.get_name();
+    } // What to do using lambda expression
+  );
+  
+  std::cout << "Sorted by name\n";
+  std::for_each(begin(stooges), end(stooges), [](const Person &p) 
+  {
+    std::cout << p << std::endl;
+  });
+  std::cout << std::endl;
+  
+  // Sort and print by ages
+  std::sort
+  (
+    begin(stooges), // Where to start, equivalent to stooges.begin()
+    end(stooges),   // Where to end
+    [](const Person &p1, const Person &p2) 
+    {
+      return p1.get_age() < p2.get_age(); // What to do using lambda expression
+    }
+  );
+  
+  std::cout << "Sorted by age\n";
+  std::for_each(begin(stooges), end(stooges), [](const Person &p) 
+  {
+    std::cout << p << std::endl;
+  });
 }
 
 int main()
@@ -260,8 +281,8 @@ int main()
   test3();
   test4();
   test5();
-  // test6();
-	// test7();
+  test6();
+	test7();
     
   std::cout << std::endl;
 	return 0;
