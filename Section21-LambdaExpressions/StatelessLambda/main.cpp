@@ -103,21 +103,21 @@ void test3()
   std::cout << stooge << std::endl;
   
   // Pass an object by value -> It uses copy constructor
-  auto l1 = [] (Person p)  { std::cout << p << std::endl;};
-  l1(stooge);
+  auto l1_1 = [] (Person p)  { std::cout << p << std::endl;};
+  l1_1(stooge);
   
   // Pass a const object by reference -> An alias to object
-  auto l2 = [] (const Person &p) { std::cout << p << std::endl;};
-  l2(stooge);
+  auto l1_2 = [] (const Person &p) { std::cout << p << std::endl;};
+  l1_2(stooge);
   
   // Pass an object by reference and modify it
-  auto l3 = [] (Person &p) 
+  auto l1_3 = [] (Person &p) 
   {
     p.set_name("Frank");
     p.set_age(25);
     std::cout << p << std::endl; 
   };
-  l3(stooge);
+  l1_3(stooge);
   
   std::cout << stooge << std::endl;
     
@@ -142,7 +142,7 @@ void filter_vector(const std::vector<int> &vec, std::function<bool (int)> func) 
   std::cout << "]" << std::endl;
 }
 
-// passing a lambda to a function
+// passing a lambda to a function as a parameter
 void test4() 
 {
   std::cout << "\n---Test4 lambda as a parameter -----------------" << std::endl;
@@ -158,7 +158,7 @@ void test4()
   filter_vector(nums, [](int x) {return x>= 30 && x <=60;});
 }
 
-// used for test5
+// used for test5 lambda function with no-args
 std::function<void (void)> make_lambda() // function object C++14
 // void (*make_lambda()) (void) // function pointer C++14
 // auto make_lambda() // C++20
@@ -166,12 +166,49 @@ std::function<void (void)> make_lambda() // function object C++14
 	return [] () {std::cout << "This lambda was made using the make_lambda function!" << std::endl;};
 }
 
+// used for test5 lambda function with args
+std::function<void (int, int)> make_lambda_with_args() // function object C++14
+// void (*make_lambda_with_args()) (int, int) // function pointer C++14
+// auto make_lambda_with_args() // C++20
+{
+	return [] (int x, int y) 
+  {
+    std::cout << "This lambda was made using the make_lambda_with_args function! ";
+    std::cout << x << " / " << y << " = " << static_cast<double>(x) / y << std::endl;
+  };
+}
+
+// used for test5 lambda function with args and return type
+std::function<double (int, int)> make_lambda_with_args_and_return_type() // function object C++14
+// double (*make_lambda_with_args_and_return_type()) (int, int) // function pointer C++14
+// auto make_lambda_with_args_and_return_type() // C++20
+{
+	return [] (int x, int y) 
+  {
+    std::cout << "This lambda was made using the make_lambda_with_args and return type function! ";
+    double division {0.0};
+    division = static_cast<double>(x) / y;
+    std::cout << x << " / " << y << " = " << division << std::endl;
+    return division;
+  };
+}
+
 // returning a lambda from a function
 void test5() {
 	std::cout << "\n---Test5 Return a lambda from a function -------------------------" << std::endl;
 	
-	auto l5 = make_lambda();
-	l5();
+  // Return a void lambda with no-args
+	auto l5_1 = make_lambda();
+	l5_1();
+
+  // Return a void lambda with args
+  auto l5_2 = make_lambda_with_args();
+  l5_2(3,5);
+
+  // Return a type from lambda with args
+  auto l5_3 = make_lambda_with_args_and_return_type();
+  double division = l5_3(3,5);
+  std::cout << "The returned variable: division = " << division << std::endl;
 }
 
 // using auto in the lambda parameter list
