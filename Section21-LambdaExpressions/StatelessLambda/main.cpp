@@ -17,11 +17,15 @@ private:
   int age;
 
 public:
-  // Overload constructor
-  Person(std::string name, int age) : name{name}, age{age} {};
+  // Default constructor
+  Person () {}
+  
+  // Delegate constructor
+  Person(std::string name, int age) : name{name}, age{age} {}
 
   // Copy constructor
-  Person(const Person &p): name{p.name}, age{p.age} { }
+  // Person(const Person &p): name{p.name}, age{p.age} {} // Option 1: member by member
+  Person(const Person &p) : Person {p.name, p.age} {} // Option 2: Using delegate constructor
 
   // Force a compile to generate the destructor
   ~Person() = default;
@@ -238,15 +242,15 @@ void test7()
     {"Curly", 25}
   };
 
-  // Sort and print by name
+  // Sort by name
   std::sort
   (
     begin(stooges), // Where to start, equivalent to stooges.begin()
     end(stooges),   // Where to end
     [](const Person &p1, const Person &p2) 
     {
-      return p1.get_name() < p2.get_name();
-    } // What to do using lambda expression
+      return p1.get_name() < p2.get_name(); // What to do using lambda expression
+    } 
   );
   
   std::cout << "Sorted by name\n";
@@ -256,7 +260,7 @@ void test7()
   });
   std::cout << std::endl;
   
-  // Sort and print by ages
+  // Sort by ages
   std::sort
   (
     begin(stooges), // Where to start, equivalent to stooges.begin()
