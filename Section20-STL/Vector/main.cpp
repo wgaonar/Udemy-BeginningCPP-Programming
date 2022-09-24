@@ -275,10 +275,10 @@ void test9()
   
   std::cout << "\nTest9 - std::copy() std::copy_if() std::back_inserter()==========" << std::endl;
   
-  std::vector<int> vec1 {1,2,3,4,5};   
+  std::vector<int> vec1 {1,2,3,4,5,6,7,8,9,10};   
   std::vector<int> vec2 {10,20};
-  display_vector(vec1); 
-  display_vector(vec2);
+  display_vector(vec1); // [ 1 2 3 4 5 6 7 8 9 10]
+  display_vector(vec2); // [ 10 20 ]
   std::cout << std::endl;
 
   // copy vec1 at the end of vec2
@@ -289,8 +289,8 @@ void test9()
 
   vec1 = {1,2,3,4,5,6,7,8,9,10};
   vec2 = {10,20};
-  display_vector(vec1);
-  display_vector(vec2);
+  display_vector(vec1); // [ 1 2 3 4 5 6 7 8 9 10]
+  display_vector(vec2); // [ 10 20 ]
   std::cout << std::endl;
   
   // copy the even numbers of vec1 at the end of vec2
