@@ -9,7 +9,7 @@
 
 class Person 
 {
-  // Friend functions to overload insertion operator "<<"
+  // Friend function to overload insertion operator "<<"
   friend std::ostream &operator<<(std::ostream &os, const Person &rhs);
 
 private:
@@ -19,7 +19,7 @@ private:
 public:
   // Default constructor
   Person () {}
-  
+
   // Delegate constructor
   Person(std::string name, int age) : name{name}, age{age} {}
 
@@ -187,7 +187,7 @@ std::function<double (int, int)> make_lambda_with_args_and_return_type() // func
 // double (*make_lambda_with_args_and_return_type()) (int, int) // function pointer C++14
 // auto make_lambda_with_args_and_return_type() // C++20
 {
-	return [] (int x, int y) 
+	return [] (int x, int y)
   {
     std::cout << "This lambda was made using the make_lambda_with_args and return type function! ";
     double division {0.0};
