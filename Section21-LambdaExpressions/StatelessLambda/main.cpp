@@ -55,7 +55,7 @@ void test1()
   // One int parameter and instantiate with () at the end of the lambda expression
   [] (int x) { std::cout << x << std::endl;}(100);  // 100
   
-  // Tow ints parameter and instantiate with () at the end of the lambda expression
+  // Two ints parameter and instantiate with () at the end of the lambda expression
   [](int x, int y) { std::cout << x+y << std::endl; }(100,200); // 300
 }
 
