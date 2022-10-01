@@ -7,19 +7,17 @@
 
 class Person 
 {
-private:
-  // For overloading "<<" operator
+  // Friend function to overload insertion operator "<<"
   friend std::ostream &operator<< (std::ostream &out, const Person &rhs);
-
+private:
   std::string name;
   int age;
 public:
   // Default constructor
   Person() = default;
 
-  // Overloaded constructor
-  Person(std::string name, int age) 
-    : name{name}, age{age}  {}
+  // Delegate constructor
+  Person(std::string name, int age) : name{name}, age{age}  {}
 
   // Getters
   std::string get_name() const
@@ -32,7 +30,7 @@ public:
     return age;
   }
 
-  // Overloaded operator "<" for using with sTL algorithms
+  // Overloaded operator "<" for using with STL algorithms
   bool operator<(const Person &rhs) const 
   {
     return this->age < rhs.age;
@@ -189,7 +187,7 @@ void test6_1()
 
   // Erase all odd numbers using for loop
   vec = {1,2,3,4,5,6,7,8,9,10};
-  for (auto it = vec.begin(); it != vec.end();) // [ 4 6 8 10 ]
+  for (auto it = vec.begin(); it != vec.end();)
   {
     if (*it % 2 != 0) 
     {
@@ -200,12 +198,12 @@ void test6_1()
       ++it; // only increment if not erased!
     }
   }
-  display_vector(vec);
+  display_vector(vec); // [ 4 6 8 10 ]
 
   // erase all even numbers using while loop
   vec = {1,2,3,4,5,6,7,8,9,10};
   auto it = vec.begin();
-  while (it != vec.end())   // [ 1 3 5 7 9 ]
+  while (it != vec.end())   
   {
     if (*it % 2 == 0)
     {
@@ -216,7 +214,7 @@ void test6_1()
       it++;   // only increment if not erased!
     }
   }
-  display_vector(vec);
+  display_vector(vec); // [ 1 3 5 7 9 ]
 }
 
 void test6_2() 
@@ -254,15 +252,28 @@ void test8()
   std::cout << "\nTest8 std::sort() =========================" << std::endl;
 
   std::vector<int> vec1 {1,21,3,40,12};    
-  display_vector(vec1);
+  display_vector(vec1); // [ 1 21 3 40 12 ]
 
   // Sort with default operator<
   std::sort(vec1.begin(), vec1.end());
-  display_vector(vec1);
+  display_vector(vec1); // [ 1 3 12 21 40 ]
 
   // Sort with standard library compare function object
   std::sort(vec1.begin(), vec1.end(), std::greater<int>());
-  display_vector(vec1);
+  display_vector(vec1); // [ 40 21 12 3 1 ]
+
+  // Work with objects
+  std::vector<Person> stooges 
+  {
+    {"Moe", 25},
+    {"Larry", 18},
+    {"Curly", 30}
+  };
+  display_vector(stooges); // [ Moe: 25 Larry: 18 Curly: 30 ]
+
+  // Sort by age with overloaded operator "<" in the class Person
+  std::sort(stooges.begin(), stooges.end());
+  display_vector(stooges); // [ Larry: 18 Moe: 25 Curly: 30 ]
 }
 
 void test9() 

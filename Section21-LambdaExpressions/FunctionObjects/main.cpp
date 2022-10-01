@@ -62,7 +62,6 @@ void test2()
 
   Square_Functor square;
   std::vector<int> vec1 {1,2,3,4,5};
-  std::vector<std::string> vec2 {"Larry", "Moe", "Curly"};
   
   std::for_each(vec1.begin(), vec1.end(), square);  // 1 4 9 16 25
   std::cout << std::endl;
@@ -77,6 +76,7 @@ void test2()
   std::cout << std::endl;
   
   // Instantiate a display of strings anonymously
+  std::vector<std::string> vec2 {"Larry", "Moe", "Curly"};
   std::for_each(vec2.begin(), vec2.end(), Displayer<std::string>()); // Larry Moe Curly
   std::cout << std::endl;
   

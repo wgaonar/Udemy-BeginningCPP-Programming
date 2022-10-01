@@ -220,7 +220,6 @@ class Person
 private:
   std::string name;
   int age;
-
 public:
   // Default constructor
   Person() = default;
