@@ -4,7 +4,7 @@
 #include <string>
 
 // Used for test1
-enum Direction {North =1, South=10, East, West };
+enum Direction { North, South, East, West };
 
 // enum Street {Main, North, Elm};   // Error, can't use North again
 
@@ -12,52 +12,56 @@ enum Direction {North =1, South=10, East, West };
 // Used for test1
 // This function expects a Direction paramater
 // and returns its string representation
-std::string direction_to_string(Direction direction) {
-    std::string result;
-    switch (direction) {
-        case North:
-            result = "North";
-            break;
-        case South:
-            result = "South";
-            break;
-        case East:
-            result = "East";
-            break;
-        case West:
-            result = "West";
-            break;
-        default:
-            result = "Unknown direction";
-    }
-    return result;
+std::string direction_to_string(Direction direction) 
+{
+  std::string result;
+  switch (direction) 
+  {
+    case North:
+      result = "North";
+      break;
+    case South:
+      result = "South";
+      break;
+    case East:
+      result = "East";
+      break;
+    case West:
+      result = "West";
+      break;
+    default:
+      result = "Unknown direction";
+  }
+  return result;
 }
 
 // Simple example that shows the use of an unscoped enumeration
-void test1() {
-   	std::cout << "\n--- Test1 --------------------------\n" << std::endl;
+void test1() 
+{
+  std::cout << "\n--- Test1 enum --------------------\n" << std::endl;
 
-    Direction direction {North};
-    std::cout << "\nDirection " << direction << std::endl; 
-    std::cout << direction_to_string(direction) << std::endl;
-    
-    direction = West;
-    std::cout << "\nDirection " << direction << std::endl; 
-    std::cout << direction_to_string(direction) << std::endl;
+  Direction direction {North};
+  std::cout << "\nDirection " << direction << std::endl;    // 0
+  std::cout << direction_to_string(direction) << std::endl; // North
+  
+  direction = West;
+  std::cout << "\nDirection " << direction << std::endl;    // 3
+  std::cout << direction_to_string(direction) << std::endl; // West
 
-    
-    // direction = 5;  // Compiler Error
-    
-    // Be careful casting since the compiler will assume
-    // you know what you are doing!
-    direction = Direction(100);
-    std::cout << "\nDirection " << direction << std::endl;  // Displays 100!
-    std::cout << direction_to_string(direction) << std::endl;
+  
+  // direction = 2;  // Compiler Error about an incompatible assignment
+  
+  // Be careful casting since the compiler will assume
+  // you know what you are doing!
+  direction = Direction(100); // To avoid the error in the assignment
+  std::cout << "\nDirection " << direction << std::endl;    // Displays 100!
+  std::cout << direction_to_string(direction) << std::endl; // Unknown direction
 
-    
-    direction = static_cast<Direction>(100);
-    std::cout << "\nDirection " << direction << std::endl;  // Displays 100!
-    std::cout << direction_to_string(direction) << std::endl;
+  
+  // This is what is happening behind the scenes!!!
+  direction = static_cast<Direction>(100);
+  std::cout << "\nDirection " << direction << std::endl;    // Displays 100!
+  std::cout << direction_to_string(direction) << std::endl; // Unknown direction
 }
 
 // Used for test2
@@ -65,7 +69,7 @@ void test1() {
 enum Grocery_Item {Milk, Bread, Apple, Orange};
 
 // Overloading the stream insertion operator to insert
-// the string representation of the provided Grovery_Item
+// the string representation of the provided Grocery_Item
 // parameter into the output stream
 std::ostream &operator<<(std::ostream &os, Grocery_Item grocery_item)
 {
@@ -90,7 +94,7 @@ std::ostream &operator<<(std::ostream &os, Grocery_Item grocery_item)
 
 // Used for test2
 // Returns a boolean depending on whether the Grocery_Item
-// paramter is a valid enumerator or not.
+// parameter is a valid enumerator or not.
 
 bool is_valid_grocery_item(Grocery_Item grocery_item)
 {
@@ -244,9 +248,9 @@ void test3() {
 
 int main()
 {
-//  test1();
-//	test2();
-	test3();
+  test1();
+  // test2();
+	// test3();
 	
 	std::cout << "\n";
 	return 0;
