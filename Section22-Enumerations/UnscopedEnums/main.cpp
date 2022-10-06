@@ -72,7 +72,7 @@ enum Grocery_Item {Milk, Bread, Apple, Orange};
   the string representation of the provided Grocery_Item
   parameter into the output stream
 */
-std::ostream &operator<<(std::ostream &os, Grocery_Item grocery_item)
+std::ostream &operator<<(std::ostream &os, const Grocery_Item& grocery_item)
 {
 	switch (grocery_item) 
   {

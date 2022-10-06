@@ -8,8 +8,8 @@ enum class Grocery_Item {Milk=350, Bread=250, Apple=132, Orange=100};
 
 // Used for test1
 // Overloaded stream insertion operator.
-// Inserts the name grocery item paramter to the input stream
-std::ostream &operator<<(std::ostream &os, Grocery_Item grocery_item)
+// Inserts the name grocery item parameter to the input stream
+std::ostream &operator<<(std::ostream &os, const Grocery_Item& grocery_item)
 {
     std::underlying_type_t<Grocery_Item> value = std::underlying_type_t<Grocery_Item>(grocery_item);
 	switch (grocery_item) {
