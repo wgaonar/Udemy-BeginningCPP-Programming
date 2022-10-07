@@ -20,7 +20,7 @@ public:
 };
 
 // Default constructor
-Player::Player() : Player {"None", 0, 0} //Use the delegate constructor
+Player::Player() : Player {"None", 0, 0} // Use the delegate constructor
 {
   cout << "No-args constructor" << endl;
   cout << "name: " << name << endl;

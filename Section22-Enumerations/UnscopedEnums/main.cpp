@@ -41,7 +41,7 @@ void test1()
   std::cout << "\n--- Test1 simple enum --------------------\n" << std::endl;
 
   Direction direction {North};
-  std::cout << "\nDirection " << direction << std::endl;    // 0
+  std::cout << "Direction " << direction << std::endl;    // 0
   std::cout << direction_to_string(direction) << std::endl; // North
   
   direction = West;
@@ -55,7 +55,6 @@ void test1()
   direction = Direction(100); // To avoid the error in the assignment
   std::cout << "\nDirection " << direction << std::endl;    // Displays 100!
   std::cout << direction_to_string(direction) << std::endl; // Unknown direction
-
   
   // This is what is happening behind the scenes!!!
   direction = static_cast<Direction>(100);
@@ -99,7 +98,7 @@ std::ostream &operator<<(std::ostream &os, const Grocery_Item& grocery_item)
   Returns a boolean depending on whether the Grocery_Item
   parameter is a valid enumerator or not.
 */
-bool is_valid_grocery_item(Grocery_Item grocery_item)
+bool is_valid_grocery_item(const Grocery_Item& grocery_item)
 {
 	switch (grocery_item) 
   {
@@ -115,6 +114,7 @@ bool is_valid_grocery_item(Grocery_Item grocery_item)
 
 /*
   Used for test2
+  Displays the grocery items in the grocery list
   Given a vector of Grocery_Items, this function displays
   the string representation of each item using the overloaded
   operator<< function.
@@ -145,7 +145,7 @@ void display_grocery_list(const std::vector<Grocery_Item> &grocery_list)
 	std::cout << "==============================" << std::endl;
   std::cout << "Valid items: " <<  valid_item_count << std::endl;
   std::cout << "Invalid items: " <<  invalid_item_count << std::endl;
-	std::cout << "Total items: " <<  valid_item_count +invalid_item_count << std::endl;
+	std::cout << "Total items: " <<  valid_item_count + invalid_item_count << std::endl;
 }
 
 // Using an unscoped enumeration to model grocery items
@@ -176,10 +176,10 @@ void test2()
 }
 
 /*
-  // Used for test3
-  // Unscoped enumerations holding the possible states 
-  // and sequences of a rocket launch.
-  // Note the addition of the Unknown enumerator for the State enumeration.
+  Used for test3
+  Unscoped enumerations holding the possible states 
+  and sequences of a rocket launch.
+  Note the addition of the Unknown enumerator for the State enumeration.
 */
 enum State {Engine_Failure, Inclement_Weather, Nominal, Unknown};
 enum Sequence {Abort, Hold, Launch};
@@ -270,14 +270,14 @@ std::ostream &operator<<(std::ostream &os, const Sequence &sequence)
 // Displays an information message given the sequence parameter.
 void initiate(Sequence sequence)
 {
-	std::cout << "Initiate " << sequence << " sequence!" << std::endl;   // Uses overloaded operator<<
+	std::cout << "Initiate " << sequence << " sequence!" << std::endl;   // Uses overloaded operator<< to print the Sequence enum
 }
 
 // Used for test3
 // Displays the state.
 void print_state(State state)
 {
-	std::cout << "The actual state is: " << state << std::endl;   // Uses overloaded operator<<
+	std::cout << "The actual state is: " << state << std::endl;   // Uses overloaded operator<< to print the State enum
 }
 
 // Using unscoped enums to control a rocket launch
@@ -296,8 +296,7 @@ void test3()
   switch (state) 
   {
 		case Engine_Failure:        // Abort if Engine Failure or Unknown!
-    case Unknown:
-                    
+    case Unknown:   
       initiate(Abort); 
       break;
 		case Inclement_Weather:                 
