@@ -114,21 +114,25 @@ void test1() {
 	display_grocery_list(shopping_list);
 }
 
-// Used for test2
-// A simple class that might model a Player in a game application.
-// The player has a name, a mode that they are currently in, and a
-// direction which they are facing.
+/* 
+  Used for test2
+  A simple class that might model a Player in a game application.
+  The player has a name, a mode that they are currently in, and a
+  direction which they are facing. 
+*/
 class Player 
 {
   friend std::ostream &operator<<(std::ostream &os, const Player &p);
-
 public:
   enum class Mode {Attack, Defense, Idle};
   enum class Direction {North, South, East, West};
   
-  // Delegate constructor
-  Player(std::string name = "none", Mode mode = Mode::Idle, Direction direction = Direction::North):
-    name{name}, mode{mode}, direction{direction} {}
+  // Delegate and default parameters constructor
+  Player( std::string name = "none", 
+          Mode mode = Mode::Idle, 
+          Direction direction = Direction::North):
+          name{name}, mode{mode}, direction{direction} 
+  {}
 
   // Getters
   std::string get_name() const 
@@ -162,7 +166,7 @@ public:
     this->direction = direction;
   }
 
-// Coded in the last part, after the enums declaration as public    
+// Coded in the last part of the class, after declare the enums as public    
 private:
   std::string name;
   Mode mode;
@@ -172,7 +176,9 @@ private:
 /* 
   Used for test2
   A simple function that returns the string representation
-  of the Player::Mode parameter passed into it. 
+  of the Player::Mode parameter passed into it.
+  @params Player::Mode // Only the objects's member variable and NOT the entire object
+  @returns string // The Player::Mode as a string representation instead of a number 
 */
 std::string get_player_mode(Player::Mode mode) 
 {
@@ -192,57 +198,68 @@ std::string get_player_mode(Player::Mode mode)
   return result;
 }
 
-// Used for test2
-// A simple function that returns the string representation
-// of the Player::Direction paramter passed into it.
-std::string get_player_direction(Player::Direction direction) {
-    std::string result;
-     switch (direction) {
-        case Player::Direction::North:
-            result = "North"; 
-            break;
-        case Player::Direction::South:
-            result = "South"; 
-            break;
-        case Player::Direction::East:
-            result = "East"; 
-            break;
-        case Player::Direction::West:
-            result = "West"; 
-            break;
-    };
-    return result;
+/* 
+  Used for test2
+  A simple function that returns the string representation
+  of the Player::Direction parameter passed into it.
+  @params Player::Direction // Only the objects's member variable and NOT the entire object
+  @returns string // The Player::Direction as a string representation instead of a number  
+*/
+std::string get_player_direction(Player::Direction direction) 
+{
+  std::string result;
+  switch (direction) 
+  {
+    case Player::Direction::North:
+      result = "North"; 
+      break;
+    case Player::Direction::South:
+      result = "South"; 
+      break;
+    case Player::Direction::East:
+      result = "East"; 
+      break;
+    case Player::Direction::West:
+      result = "West"; 
+      break;
+  };
+  return result;
 }
 
-// Used for test2
-// Overloading the output stream insertion operator
-// so we can easily put Player objects on the output stream.
-std::ostream &operator<<(std::ostream &os, const Player &p) {
-    os << "Player name:      " << p.get_name() << "\n"
-       << "Player mode:      " << get_player_mode(p.mode) << "\n"
-       << "Player direction: " << get_player_direction(p.direction) 
-       << std::endl;
-    return os;
+/* 
+  Used for test2
+  Overloading the output stream insertion operator
+  so we can easily put Player objects on the output stream. 
+*/
+std::ostream &operator<<(std::ostream &os, const Player &p) 
+{
+  os  << "Player name:      " << p.get_name() << "\n"
+      << "Player mode:      " << get_player_mode(p.mode) << "\n"   // Pass only the objects's member variable
+      << "Player direction: " << get_player_direction(p.direction) // Pass only the objects's member variable
+      << std::endl;
+  return os;
 }
 
 
-void test2() {
-   	std::cout << "\n--- Test2 --------------------------\n" << std::endl;
+void test2() 
+{
+  std::cout << "\n--- Test2 --------------------------\n" << std::endl;
 
-    Player p1{"Cloud Strife", Player::Mode::Attack, Player::Direction::North};
-    Player p2{"Tifa Lockhart", Player::Mode::Defense, Player::Direction::West};
-    Player p3{"Sephiroth", Player::Mode::Idle, Player::Direction::South};
+  // Declare the object using the enums object's member variables as it is specified in the constructor
+  Player p1{"Cloud Strife", Player::Mode::Attack, Player::Direction::North};
+  Player p2{"Tifa Lockhart", Player::Mode::Defense, Player::Direction::West};
+  Player p3{"Sephiroth", Player::Mode::Idle, Player::Direction::South};
 
-    std::cout << p1 << std::endl; 
-    std::cout << p2 << std::endl; 
-    std::cout << p3 << std::endl;
+  std::cout << p1 << std::endl; 
+  std::cout << p2 << std::endl; 
+  std::cout << p3 << std::endl;
 }
 
 
 int main()
 {
-    test1();
-    test2();
+  test1();
+  test2();
 	std::cout << "\n";
 	return 0;
 }
