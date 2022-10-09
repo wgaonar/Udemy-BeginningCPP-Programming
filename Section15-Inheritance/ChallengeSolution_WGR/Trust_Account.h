@@ -24,9 +24,13 @@ private:
   static constexpr const char *def_name = "Unnamed Trust Account";
   static constexpr double def_balance = 0.0;
   static constexpr double def_int_rate = 0.0;
-  const double bonus = 50.0;
-  int num_withdrawals = 0;
-  const int max_withdrawals = 3;
+  static constexpr double bonus_amount = 50.0;
+  static constexpr double bonus_threshold = 5000.0;
+  static constexpr int max_withdrawals = 3;
+  static constexpr double max_withdraw_percent = 20.0;
+
+protected:
+  int num_withdrawals;
 
 public:
   // Option 1: Delegate constructor with default initializer parameters 

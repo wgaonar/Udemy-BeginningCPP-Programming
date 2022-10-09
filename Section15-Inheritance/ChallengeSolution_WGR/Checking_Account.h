@@ -16,9 +16,9 @@ class Checking_Account: public Account
   friend std::ostream &operator<<(std::ostream &os, const Checking_Account &account);
 
 private:
-    static constexpr const char *def_name = "Unnamed Checking Account";
-    static constexpr double def_balance = 0.0;
-    const double fee_withdrawal = 1.5;
+  static constexpr const char *def_name = "Unnamed Checking Account";
+  static constexpr double def_balance = 0.0;
+  static constexpr double fee_withdrawal = 1.5;
 
 public:
   // Option 1: Delegate constructor with default initializer parameters 

@@ -58,7 +58,8 @@ int main()
   deposit(trust_accounts, 5000);
   withdraw(trust_accounts, 100);
   withdraw(trust_accounts, 1000);
-  withdraw(trust_accounts, 3000);
+  withdraw(trust_accounts, 2000);
+  withdraw(trust_accounts, 4000); // Withdrawal #4 is NOT let!!!
     
   return 0;
 }

@@ -1,27 +1,23 @@
 #include "Trust_Account.h"
 
 Trust_Account::Trust_Account(std::string name, double balance, double int_rate)
-    : Savings_Account {name, balance, int_rate} 
+    : Savings_Account {name, balance, int_rate}, num_withdrawals {0} 
 {}
 
 /* 
   Deposit:
-  Amount supplied to deposit will be incremented by (amount * int_rate/100).
-  Besides, if the amount is $5000.00 or more, a bonus of $50.00 will added. 
+  Amount supplied to deposit will be incremented in the SAME WAY that
+  a Savings_Account unless, if the amount is $5000.00 or more, a bonus of $50.00 will added. 
   and then the updated amount will be deposited.
-  It uses the base class method -Account::deposit- to update the balance 
+  It uses the derived class method -Savings_Account::deposit- to update the balance 
 */
 bool Trust_Account::deposit(double amount) 
 {
-  if (amount >= 5000)
+  if (amount >= bonus_threshold)
   {
-    amount += amount * (int_rate/100) + bonus;
+    amount += bonus_amount;
   }
-  else
-  {
-    amount += amount * (int_rate/100);
-  }
-  return Account::deposit(amount);
+  return Savings_Account::deposit(amount);
 }
 
 /* 
@@ -32,16 +28,15 @@ bool Trust_Account::deposit(double amount)
 */
 bool Trust_Account::withdraw(double amount) 
 {
-  if (num_withdrawals < max_withdrawals)
+  if (num_withdrawals < max_withdrawals && amount <= this->balance * (max_withdraw_percent/100))
   {
-    if (amount <= this->balance * 0.2)
-    {
-      num_withdrawals++;
-      return Account::withdraw(amount);
-    }
+    num_withdrawals++;
+    return Savings_Account::withdraw(amount);
   }
-  
-  return false;
+  else
+  {
+    return false;
+  }
 }
 
 std::ostream &operator<<(std::ostream &os, const Trust_Account &account) 
